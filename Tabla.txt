@@ -1,0 +1,7 @@
+Nombre
+//Usuario
+Saldo
+//Moneda
+//Icono
+Tipo de Cuenta
+Descripción

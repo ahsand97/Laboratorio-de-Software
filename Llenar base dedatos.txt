@@ -1,0 +1,17 @@
+python
+from Proyecto import db
+from Proyecto.modelos import Tipocuenta
+
+a = Tipocuenta(Nombre='Efectivo')
+b = Tipocuenta(Nombre='Crédito'.decode('utf-8'))
+c = Tipocuenta(Nombre='Cheque')
+d = Tipocuenta(Nombre='Préstamo'.decode('utf-8'))
+
+db.session.add(a)
+db.session.commit()
+db.session.add(b)
+db.session.commit()
+db.session.add(c)
+db.session.commit()
+db.session.add(d)
+db.session.commit()
