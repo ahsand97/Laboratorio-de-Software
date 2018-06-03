@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One');
+
+body{	
+	background:color-red;
+	background-size:cover;
+}
+#navbar{
+	background: #37C5C3  ;
+	height: 15%;
+	padding: 0% 0%;
+	
+}
+
+#navbarlog{
+	background: #37C5C3  ;
+	height: 20%;
+	padding: 0% 0%;
+	width: 100%;
+	
+}
+
+#navbarInner{
+	
+	padding: 0% 0%;
+}
+#loginContenedor{
+	background: #3d3935;
+}
+
+#inicioContenedor{
+	background: #37C5C3;
+}
+
+#mensajeB{
+	color: white;
+	text-align: center;
+	font-family: himelody;
+	font-size: 30px;
+	font-weight: bolder;
+}
+#res{
+	
+	width: 100%;
+	color: white;
+	font-weight: bold;
+	font-size: x-large;
+	font-style: italic;
+	text-align: left;
+	padding-top: -106%;
+	padding-left: : 80%
+
+}
+#logoImagenLogin{
+	height: 130px;
+	position: relative;
+	max-width:400px;
+	top: -150px;
+}
+#logoImagenInicio{
+	width: 90%;
+	height: 90%;
+	margin-top: 5%;
+	position: relative;
+}
+#logoImagenLogin2{
+	height: 130px;
+	position: relative;
+	max-width:400px;
+	top: -48px;
+}
+#crearC{
+	width: 33%;
+	height: 100%;
+}
+
+#CrearR{
+	width: 50%; 
+	margin:auto; 
+	border: 2px solid white; 
+	border-radius: 15px; 
+	background-color: white;
+	font-family: signika-regular;
+}
+#iniciarS{
+	width: 50%;
+	height: 100%;
+	margin:auto;
+	text-align: left;
+	border-radius: 16px; padding: 5px; 
+	font-family: signika-regular;
+}
+
+#IngresoId{
+	width: 50%;
+	height: 100%;
+	margin:auto; border: 2px solid white;
+	border-radius: 16px; padding: 5px; 
+	background-color: white;
+	font-family: signika-regular;
+}
+
+#IrRegistro{
+	width: 50%;
+	height: 100%;
+	margin:auto; 
+	border-radius: 16px; padding: 5px; 
+	font-family: signika-regular;
+}
+
+#sesionini{
+	width: 50%; 
+	margin:auto;
+	height: 100%;	
+	border: 2px solid white; 
+	border-radius: 16px; padding: 5px; 
+	background-color: white;
+	font-family: signika-regular;
+	width: 50%;
+}
+#Registroini{
+	width: 50%; 
+	margin:auto;
+	height: 100%;	
+	border: 2px solid white; 
+	border-radius: 16px; padding: 5px; 
+	background-color: white;
+	font-family: signika-regular;
+	width: 50%;
+}
+#tituloC{
+	width: 100%;
+	color: black;
+	font-family: signika-regular;
+	font-size: xx-large;
+	top: -5%;
+}

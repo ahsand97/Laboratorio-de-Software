@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'himelody';
+    src: url('../lib/framework7/fonts/himelody-regular.woff2') format('woff2'),
+         url('../lib/framework7/fonts/himelody-regular.woff') format('woff'),
+		 url('../lib/framework7/fonts/himelody-regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'signika-regular';
+    src: url('../lib/framework7/fonts/signika-regular.woff2') format('woff2'),
+         url('../lib/framework7/fonts/signika-regular.woff') format('woff'),
+		 url('../lib/framework7/fonts/signika-regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'ubuntu';
+    src: url('../lib/framework7/fonts/ubuntu.woff2') format('woff2'),
+         url('../lib/framework7/fonts/ubuntu.woff') format('woff'),
+		 url('../lib/framework7/fonts/ubuntu.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+

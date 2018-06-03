@@ -1,0 +1,788 @@
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One');
+
+body{	
+	background:color-red;
+	background-size:cover;
+}
+
+#navbar{
+	background: #37C5C3  ;
+	height: 10%;
+	padding: 0% 0%;	
+}
+
+#navbarInner{
+	
+	padding: 0% 0%;
+}
+
+
+#imingreso{
+	width: 90%;
+	height: 90%;
+	border: 4px solid #1C568D;
+	border-radius: 10px;
+	margin-top: 3%;
+	margin-left: 4%;
+	
+}
+#imcuenta{
+	width: 90%;
+	height: 90%;
+	border: 4px solid #1C568D;
+	border-radius: 10px;
+	margin-top: 3%;
+	margin-left: 4%;
+}
+#imgasto{
+	width: 90%;
+	height: 90%;
+	border: 4px solid #1C568D;
+	border-radius: 10px;
+	margin-top: 3%;
+	margin-left: 4%;
+	
+}
+#titulo {
+	width: 90%;
+	color: black;
+	font-weight: bold;
+	font-family: Ubuntu;
+	font-size: xx-large;
+	font-style: italic;
+	text-align: center;
+
+
+}
+
+#titulopri {
+	width: 100%;
+	color: black;
+	
+	font-family: Ubuntu;
+	font-size: xx-large;
+	font-style: oblique;
+	padding: 23%;
+	text-decoration: underline dotted #3d3935;
+
+
+
+}
+
+#registroContenedor{
+	background: #3d3935;
+	background-size:cover;
+	width: 100%;
+}
+
+#registroContenedorni{
+	background: #3d3935;
+	background-size:cover;
+	width: 100%;
+}
+
+#ing{
+	color: #3d3935;
+	width: 100%;
+	height: 20%;
+	padding-left:100%;
+	padding-right:100%;
+	padding: 5% 0%;
+}
+
+
+#navbarBottom{
+	position: fixed;
+	bottom: 0;
+	
+
+	/*background: url("../imagenes/back5-flip.jpg");
+	background-size:cover;*/
+	background: #37C5C3  ;
+	background-size:cover;
+	padding: 3%;
+}
+
+#home{
+
+	
+	width: 100%;
+	color: black;
+	padding-left: 20%;
+	padding-right: 20%;
+	font-size: 200%;
+	
+}
+
+#trans{
+
+	
+	width: 30%;
+	color: black;
+	padding-left: 62%;
+	padding-right: 0%;
+	font-size: 200%;
+
+
+}
+
+#transi{
+
+	
+	width: 30%;
+	color: black;
+	padding-left: 50%;
+	padding-right: 0%;
+	font-size: 200%;
+
+
+}
+
+#pres{
+
+	width: 100%;
+	height: 100%;
+	color: black;
+	padding-left: 0%;
+	padding-right: 50%;
+	font-size: 200%;
+	padding-bottom:100px;
+	padding-top: 40px;
+	margin-bottom:-40px; 
+	
+
+	
+}
+
+#texing {
+	padding: 0% 0%;
+	color: #37C5C3;
+	margin-left: 35%;
+	margin-top: 0%;
+	margin-bottom: -10%;
+	font-family: signika-regular;
+
+
+}
+
+#texgas {
+	padding: 0% 0%;
+	color: #37C5C3;	
+	margin-left: 37%;
+	margin-top: 0%;
+	margin-bottom: 10%;
+	font-family: signika-regular;
+
+}
+
+#texcu {
+	padding: 0px 0px;
+	color: #37C5C3;	
+	margin-left: 35%;
+	margin-top: 0%;
+	margin-bottom: -10%;
+	font-family: signika-regular; 
+
+}
+
+
+
+#cont {
+	color: red;
+	
+	text-align: red;
+}
+
+#navbarni{
+	font-size: 100%;
+	background: #37C5C3  ;
+	background-size:cover;
+	height: 15%;
+	padding: 0;
+	
+}
+
+
+#tituloni {
+	width: 100%;
+	color: black;
+	font-weight: bold;
+	font-family: "Times New Roman", Times, serif;
+	font-size: x-large;
+	font-style: italic;
+	text-align: center;
+	padding-top: 1%;
+	padding-right: 30%;
+
+
+}
+
+#star{
+	color: black;
+	margin-top: 10%;
+	margin-left: -150%;
+
+
+}
+
+#star1{
+	color: black;
+	margin-left: -250%;
+
+	
+
+}
+
+
+#for {
+	color: black;
+	margin-left: -5%;
+	background: #D5DCDC;
+	padding-left: 10%;
+
+	
+}
+#for1{
+	color: black;
+	margin-left: 0%;
+	background: #D5DCDC;
+	padding-left: 10%;
+	
+}
+
+#cal {
+	color: black;
+    background: #D5DCDC;
+	padding: 0% 1%;
+	padding-left: 10%;
+	margin-left: -5%;
+	
+}
+
+
+
+#atras {
+	
+	color: black;
+	
+	padding: 40% 0%;
+	padding-left: 10%;
+	padding-bottom: 200%;
+	padding-top: 10%;
+}
+
+ 
+ #logo{
+ 	width: 80%;
+ 	height: 120%;
+ 	padding: 0% 0%;
+ 	padding-bottom: 7%;
+ 	padding-left: 20%;
+ }
+
+  #pan {
+  	font-size: 150%;
+  	 color: black;
+  }
+
+  #panel {
+	  /*
+  	background: #37C5C3;
+  	padding-top: 10%;
+  	border-top: 9px solid #3d3935;
+    border-bottom: 9px solid #3d3935;
+    border-left: 12px double #3d3935;
+    border-right: 12px double #3d3935;
+
+*/
+	background-color: #37C5C3; 
+	padding-top: 10%; 
+	/*border-radius: 10px; */
+	border: 1px solid transparent; 
+	border-top: 1px solid transparent;  
+	border-bottom: 1px solid #DDD;"
+
+  }
+
+  
+
+
+
+  #logopan{
+ 	width: 100%;
+ 	height: 120%;
+ 	
+ 	padding-top: 20%;
+ 	padding-right: 3%;
+ }
+
+ #select{
+	margin-left: 30%;
+	margin-right: 10%;
+	color: red;
+	background-color: #D5DCDC;
+	text-align: 30%;
+	padding-left: 10%;
+
+	
+}
+
+#cat{
+	margin-left: 35%;
+	color: white;
+	background: red;
+	width: 100%;
+	margin-top: 10%;
+
+}
+
+#tisel{
+	margin-right: 410%;
+	margin-top: 30%;
+	color: white;
+}
+
+#ico{
+	margin-top: 10%;
+
+	margin-left: 3%;
+	color:black;
+	padding: 0% 10%;
+}
+
+#in{
+
+  
+  height: 60%;
+  border: Powder 1x solid;
+  border-radius: 20px;
+  margin-left: 10%;
+  margin-right: 10%;
+  background: #CBCBCB;
+  padding-top: 10%;
+
+}
+
+#inputreyda{
+	
+  border: Powder 1x solid;
+  border-radius: 20px;
+  margin-left: 5%;
+  margin-right: 5%;
+  background: #FFFFFF;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*________________________________*/
+#registroBox{
+	width: 33%;
+	height: 100%;
+}
+
+#logoImagenBox{
+	height: 100%;
+	width: 33%;
+	margin: auto;
+}
+#logoImagen{
+	height: 100%;	
+	margin: auto;
+}
+
+#loginBox{
+	width: 33%;
+	position: relative;	
+}
+
+#navbarRedes{
+	/*background: url("../imagenes/back5-flip.jpg");
+	background-size:cover;*/
+	height: 3%;
+	margin-top: 3%;
+	width: 100%;
+	position: relative;
+}
+
+.redesImagenes{
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+
+}
+
+#redesFitness{
+	width: 100%;
+	height: 100%;	
+}
+
+
+#instagram{
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+#facebook{
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 5%;
+
+}
+
+
+#fitness{
+	height: 100%;
+	width: 30%;
+	position: absolute;
+	top: 0px;
+	left: 12%;
+
+
+}
+
+
+
+#menu{
+	width: 100%;
+	display: inline-block;
+}
+
+
+#ejercicios{
+	width: 40%;
+	height: 90%;
+	border: 4px solid #1C568D;
+	border-radius: 10px;
+	margin-top: 20%;
+	margin-left: 2%;
+	
+}
+
+#alimentacion{
+	width: 50%;
+	height: 10%;
+	border: 4px solid #1C568D;
+	border-radius: 10px;
+	margin-top: 20%;
+	margin-left: 2%;
+	
+}
+
+#suplementacion{
+	width: 90%;
+	height: 90%;
+	border: 4px solid #1C568D;
+	border-radius: 10px;
+	margin-top: 20%;
+	margin-left: 2%;
+	
+}
+
+#rutina{
+	width: 90%;
+	height: 90%;
+	border: 4px solid #1C568D;
+	border-radius: 10px;
+	margin-top: 20%;
+	margin-left: 2%;
+	
+}
+
+
+
+#dumbbellIcono{	
+	height: 100%;
+}
+
+#mealIcono{
+	height: 100%;	
+}
+
+#logoImagenBottom{
+	height: 100%;
+}
+
+#suplementoIcono{
+	height: 100%;
+}
+
+#agendaIcono{
+	height: 100%;
+}
+
+
+
+
+#logoImagenLogin{
+	height: 60px;
+	position: relative;
+	max-width:100px;
+	margin-top: 15px;
+}
+
+#loginForm{
+	color: white;
+}
+
+#registroTitulo{
+	width: 80%;
+	height: 100%;
+	margin-left: 10%;	
+}
+
+#registroBoxPageRegistro{
+	margin-right: 13.5%;
+}
+
+
+.formulario-letra{
+	font-size: 15px;
+	color:white;
+}
+
+
+
+
+#rutinaTitulo{
+	width: 80%;
+	height: 100%;
+	margin-left: 10%;
+}
+
+
+.demo-card-header-pic .card-header {
+  height: 80vw;
+  background: url("../imagenes/rutinaImagen.jpg");
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+.demo-card-header-pic .card-content-padding .date{
+  color: #8e8e93;
+}
+
+.alimentacionTitulos{
+	background-color: white;
+	color: black;
+	text-align: center;
+	font-size: 20px;
+	font-weight: bolder;
+	font-family: Verdana, Geneva, sans-serif;
+}
+
+
+
+.alimentacionTab{
+	position: relative;
+	bottom: 79px;
+	background-color: red;
+	width: 120%;	
+	position: relative;
+	right: 10%;
+}
+
+#comidaDelDia{
+  height: 80vw;
+  background: url("../imagenes/comidaDelDia.jpg");
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+
+.carnesSwiper{
+	width: 100%;
+	height: 100%;
+}
+
+#carnes1{
+	height: 80vw;
+	background: url("../imagenes/carnes1.jpg");
+	background-size: cover;
+	background-position: center;
+	color: #fff;
+}
+
+#carnes2{
+	height: 80vw;
+	background: url("../imagenes/carnes2.jpg");
+	background-size: cover;
+	background-position: center;
+	color: #fff;
+}
+
+#carnes3{
+	height: 80vw;
+	background: url("../imagenes/carnes3.jpg");
+	background-size: cover;
+	background-position: center;
+	color: #fff;
+}
+
+
+#verduras1{
+	height: 80vw;
+	background: url("../imagenes/verduras1.jpg");
+	background-size: cover;
+	background-position: center;
+	color: #fff;
+}
+
+#verduras2{
+	height: 80vw;
+	background: url("../imagenes/verduras2.jpg");
+	background-size: cover;
+	background-position: center;
+	color: #fff;
+}
+
+#verduras3{
+	height: 80vw;
+	background: url("../imagenes/verduras3.jpg");
+	background-size: cover;
+	background-position: center;
+	color: #fff;
+}
+
+#variado1{
+	height: 80vw;
+	background: url("../imagenes/variado1.jpg");
+	background-size: cover;
+	background-position: center;
+	color: #fff;
+}
+
+#variado2{
+	height: 80vw;
+	background: url("../imagenes/variado2.jpg");
+	background-size: cover;
+	background-position: center;
+	color: #fff;
+}
+
+#variado3{
+	height: 80vw;
+	background: url("../imagenes/variado3.jpg");
+	background-size: cover;
+	background-position: center;
+	color: #fff;
+}
+
+
+#suplementacionImagen{
+	height: 80vw;
+	background: url("../imagenes/suplementacionImagen.jpg");
+	background-size: cover;
+	background-position: center;
+	color: #fff;
+}
+
+#proteina1Imagen{
+	height: 80vw;
+	background: url("../imagenes/proteina1Imagen.jpg");
+	background-size: cover;
+	background-position: center;
+	color: #fff;
+}
+
+#proteina2Imagen{
+	height: 80vw;
+	background: url("../imagenes/proteina2Imagen.jpg");
+	background-size: cover;
+	background-position: center;
+	color: #fff;
+	text-align: right;
+}
+
+#pre-entrenoImagen{
+	height: 80vw;
+	background: url("../imagenes/pre-entrenosImagen.jpg");
+	background-size: cover;
+	background-position: center;
+	color: #fff;
+	text-align: right;
+}
+
+#quemadoresImagen{
+	height: 80vw;
+	background: url("../imagenes/quemadoresImagen.jpg");
+	background-size: cover;
+	background-position: center;
+	color: #fff;
+	text-align: right;
+
+}
+
+#creatinaImagen{
+	height: 80vw;
+	background: url("../imagenes/creatinaImagen.jpg");
+	background-size: cover;
+	background-position: center;
+	color: #fff;
+	text-align: right;
+}
+
+.demo-swiper .swiper-slide {
+  font-size: 25px;
+  font-weight: 300;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  color: #000;
+}
+.demo-swiper .swiper-slide {
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+.demo-swiper {
+  margin: 0px 0 35px;
+  font-size: 18px;
+  height: 120px;
+}
+.demo-swiper.demo-swiper-auto .swiper-slide {
+  width: 85%;
+}
+.demo-swiper.demo-swiper-auto .swiper-slide:nth-child(2n) {
+  width: 70%;
+}
+.demo-swiper.demo-swiper-auto .swiper-slide:nth-child(3n) {
+  width: 30%;
+}
+
+
+
+.ejerciciosLinks{
+	text-align: center;
+	font-family: Verdana, Geneva, sans-serif;
+	font-weight: bolder;
+	font-size: 2em;
+}
+
+
+
+
+
+<!-- 
+border: 2px solid black;
+-->

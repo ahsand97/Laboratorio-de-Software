@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One');
+
+body{	
+	background:color-red;
+	background-size:cover;
+	margin: 0;
+	background: linear-gradient(#eee,#777);
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#navbar{
+	background: #37C5C3  ;
+	height: 15%;
+	padding: 0% 0%;
+	
+}
+
+#navbarInner{
+	
+	padding: 0% 0%;
+}
+
+#navbarBottom{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	background: #37C5C3  ;
+	background-size:cover;
+	padding: 3%;
+}
+#loginContenedor{
+	background: #3d3935;
+	width:300;
+}

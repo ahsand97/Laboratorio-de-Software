@@ -1,0 +1,8 @@
+.smart-select .item-title {
+min-width: 35% !important;
+font-family: ubuntu;
+}
+
+.smart-select .item-after {
+width: 100%;
+}
