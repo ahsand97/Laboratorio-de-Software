@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<!-- Color theme for statusbar -->
+		<meta name="theme-color" content="#2196f3">
+		<!-- Your app title -->
+		<title>Editar Perfil</title>
+		<!-- Path to Framework7 Library CSS -->
+		<link rel="stylesheet" href="../../static/lib/framework7/css/framework7.min.css">
+		<link rel="stylesheet" type="text/css" href="../../static/lib/framework7/css/framework7-icons.css">
+		<!-- Path to your custom app styles-->
+
+		<link rel="stylesheet" type="text/css" href="../../static/css/cuentas.css">
+		<link rel="stylesheet" type="text/css" href="../../static/css/fuentespropias.css">
+		<link rel="stylesheet" href="../../static/css/botones.css">
+	</head>
+	<body>
+		<div id="app">
+			<!-- Statusbar overlay -->
+			<div class="statusbar"></div>
+			<!-- Your main view, should have "view-main" class -->
+			<div class="view view-main">
+				<!-- Initial Page, "data-name" contains page name -->
+				<div data-name="home" class="page">
+					<div id="loginContenedor" class="page-content">
+						<div id="navbar" class="navbar">
+							<div id="navbarInner" class="navbar-inner">
+								<div class="login-screen-title">
+									<img id="logoImagenLogin" src="../../static/imagenes/logo.png" style="height: 60px; position: relative; max-width:100px; margin-top: 15px;"/>
+								</div>
+								<div class="title" style="font-family: himelody; border-radius: 5px; border: 1px solid transparent; font-size: 40px;">Editar Perfil</div>
+							</div>
+						</div>
+						<div class="list links-list">
+							<ul>
+								<br>
+								<li>
+									<a class="link external" href=" {{ url_for('ChangesProfileName') }}">
+										<div class="item-title-row">
+											<div id= "texto" class="item-title" style="font-family: signika-regular; font-weight: bold; color: white; font-size: 22px;">Editar Nombre</div>
+										</div>
+									</a>
+								</li>
+								</br>
+								<br>
+									<li>
+										<a class="link external" href=" {{ url_for('ChangesProfileUsername') }}">
+											<div class="item-title-row">
+												<div id= "texto" class="item-title" style="font-family: signika-regular; font-weight: bold; color: white; font-size: 22px;">Editar Nombre de Usuario</div>
+											</div>
+										</a>
+									</li>
+								</br>
+								<br>
+									<li>
+										<a class="link external" href=" {{ url_for('ChangesProfileEmail') }}">
+											<div class="item-title-row">
+												<div id= "texto" class="item-title" style="font-family: signika-regular; font-weight: bold; color: white; font-size: 22px;">Editar Correo</div>
+											</div>
+										</a>
+									</li>
+								</br>
+								<br>
+									<li>
+										<a class="link external" href=" {{ url_for('ChangesProfilePassword') }}">
+											<div class="item-title-row">										
+												<div id= "texto" class="item-title" style="font-family: signika-regular; font-weight: bold; color: white; font-size: 22px;">Editar Contraseña</div>
+											</div>
+										</a>
+									</li>
+								</br>
+							</ul>
+						</div>
+						<div>
+							<center>
+								{% for message in get_flashed_messages() %}
+								<span style="color:green; font-weight:bold; font-family: ubuntu; font-size: 18px;">{{ message }}</span>
+								{% endfor %}
+							</center>
+						</div>
+						<!--<br>
+						<center>
+							<div class="btn-container" style="margin-bottom: -10px;">
+								<a href="{{ url_for('trabajando')  }}" class="btn external" style="width: 150px; height: 40px; line-height: 40px; background-color: transparent; font-family: signika-regular; font-size: 18px; color: #83F243;">EDITAR CUENTA</a>
+							</div>
+						</center>
+						</br>-->
+						<br>
+							<div id="navbarRedes">
+								<div id="navbarBottom" class="toolbar toolbar-bottom-md" style="position: fixed; bottom: 0; width: 100%; background: #37C5C3; background-size:cover; padding: 3%;">
+									<div class="toolbar-inner" style="border-radius: 5px; border: 1px solid transparent; border-top: 1px solid transparent; border-bottom: 1px solid transparent;">
+										<a class="link external" href="{{ url_for('principal')  }}" style="margin-left: 158.9845px;">
+											<i class="f7-icons" style="color: black;">undo</i>
+										</a>
+									</div>
+								</div>
+							</div>
+						</br>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../static/lib/framework7/js/framework7.min.js"></script>
+		<!-- Path to your app js-->
+		<script type="text/javascript" src="../../static/js/my-app.js"></script>
+		<script src='../../static/js/jquery.min.js'></script>
+	</body>
+</html>

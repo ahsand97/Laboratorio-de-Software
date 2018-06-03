@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Color theme for statusbar -->
+    <meta name="theme-color" content="#2196f3">
+    <!-- Your app title -->
+    <title>Cuentas</title>
+    <!-- Path to Framework7 Library CSS -->
+    <link rel="stylesheet" href="../static/lib/framework7/css/framework7.min.css">
+    <link rel="stylesheet" type="text/css" href="../static/lib/framework7/css/framework7-icons.css">
+    <!-- Path to your custom app styles-->
+	
+    <link rel="stylesheet" type="text/css" href="../static/css/cuentas.css">
+     <link rel="stylesheet" type="text/css" href="../static/css/fuentespropias.css">
+</head>
+<body>
+	<div id="app">
+          <!-- Statusbar overlay -->
+          <div class="statusbar"></div>
+          <!-- Your main view, should have "view-main" class -->
+          <div class="view view-main">
+            <!-- Initial Page, "data-name" contains page name -->
+            <div data-name="home" class="page">
+				<div class="navbar" style="background: #37C5C3; height: 13%;">
+					<div class="navbar-inner sliding">
+						<div class="left">
+							<a class="link external" href="{{ url_for('principal') }}">
+								<i class="icon icon-back"></i>
+							</a>
+							<img id="logoImagenLogin" src="../static/imagenes/logo.png" style="height: 60px; position: relative; max-width:100px; margin-top: 15px;"/>
+						</div>
+						<div class="title" style="font-family: himelody; border-radius: 5px; border: 1px solid transparent; font-size: 40px;">Cuentas</div>
+						<div class="right">
+							<!--<a class="link sortable-toggle" data-sortable=".sortable">
+								<i class="f7-icons ">keyboard_fill</i>
+							</a>-->
+						</div>
+					</div>
+				</div>
+				<div class="toolbar no-shadow toolbar-bottom-md" style="width: 100%; background: #37C5C3; background-size:cover; padding: 3%;">
+					<div class="toolbar-inner" style="border-radius: 5px; border: 1px solid transparent; border-top: 1px solid transparent; border-bottom: 1px solid transparent;">
+						<a class="link external" href="{{ url_for('transacciones')  }}">
+							<i class="f7-icons" style="color: black;">list_fill</i>
+						</a>
+						<a class="link external" href=" {{ url_for('AddCuenta') }}">
+							<i class="f7-icons" style="color: black;">add_round_fill</i>
+						</a>
+						<a class="link external" href="{{ url_for('trabajando') }}">
+							<i class="f7-icons" style="color: black;">money_dollar_fill</i>
+						</a>
+					</div>
+				</div>
+            	<div id="loginContenedor" class="page-content" style="-webkit-font-smoothing: antialiased;">
+					<div class="list media-list sortable" style="margin-top: 40px;">
+						<ul>
+							{% for cuenta in cuentas %}
+							{% if cuenta %}
+							<li style="margin: auto; width: 95%; background: white; padding: 3px 3px 3px 3px; margin-bottom: 10px; border-radius: 10px;">
+								<div class="item-content">
+									{% if cuenta.Logo == 1 %}
+									<div class="item-media" style="margin-top: 10px;"><img src="../static/imagenes/Nueva Carpeta/1g.png"/></div>
+									{% elif cuenta.Logo == 2 %}
+									<div class="item-media" style="margin-top: 10px;"><img src="../static/imagenes/Nueva Carpeta/2g.png"/></div>
+									{% elif cuenta.Logo == 3 %}
+									<div class="item-media" style="margin-top: 10px;"><img src="../static/imagenes/Nueva Carpeta/3g.png"/></div>
+									{% elif cuenta.Logo == 4 %}
+									<div class="item-media" style="margin-top: 10px;"><img src="../static/imagenes/Nueva Carpeta/4g.png"/></div>
+									{% elif cuenta.Logo == 5 %}
+									<div class="item-media" style="margin-top: 10px;"><img src="../static/imagenes/Nueva Carpeta/5g.png"/></div>
+									{% elif cuenta.Logo == 6 %}
+									<div class="item-media" style="margin-top: 10px;"><img src="../static/imagenes/Nueva Carpeta/6g.png"/></div>
+									{% elif cuenta.Logo == 7 %}
+									<div class="item-media" style="margin-top: 10px;"><img src="../static/imagenes/Nueva Carpeta/7g.png"/></div>
+									{% elif cuenta.Logo == 8 %}
+									<div class="item-media" style="margin-top: 10px;"><img src="../static/imagenes/Nueva Carpeta/8g.png"/></div>
+									{% elif cuenta.Logo == 9 %}
+									<div class="item-media" style="margin-top: 10px;"><img src="../static/imagenes/Nueva Carpeta/9g.png"/></div>
+									{% endif %}
+									<div class="item-inner">
+										<div class="item-title-row">
+											<div class="item-title" style="font-family: ubuntu; font-weight: bold; color: green; font-size: 18px; margin: auto; padding-right: 30px;">{{ cuenta.Nombre }}</div>
+										</div>
+										<div class="item-title-row">
+											{% if cuenta.id_Tipocuenta == 1 %}
+											<div class="item-subtitle" style="font-family: ubuntu; font-weight: bold; color: black; font-size: 16px;">Tipo de cuenta:</div>
+											<div class="item-subtitle" style="font-family: ubuntu; color: black; font-size: 16px; margin-left: 5px;">Efectivo</div>
+											<div class="item-after">
+												<a class="link external" href=" {{ url_for('infoefectivo', id=cuenta.id) }}">
+													<img src="../static/imagenes/right-arrow.png"></img>
+												</a>
+											</div>
+											{% elif cuenta.id_Tipocuenta == 2 %}
+											<div class="item-subtitle" style="font-family: ubuntu; font-weight: bold; color: black; font-size: 16px;">Tipo de cuenta:</div>
+											<div class="item-subtitle" style="font-family: ubuntu; color: black; font-size: 16px; margin-left: 5px;">Crédito</div>
+											<div class="item-after">
+												<a class="link external" href=" {{ url_for('infocredito', id=cuenta.id) }}">
+													<img src="../static/imagenes/right-arrow.png"></img>
+												</a>
+											</div>
+											{% elif cuenta.id_Tipocuenta == 3 %}
+											<div class="item-subtitle" style="font-family: ubuntu; font-weight: bold; color: black; font-size: 16px;">Tipo de cuenta:</div>
+											<div class="item-subtitle" style="font-family: ubuntu; color: black; font-size: 16px; margin-left: 5px;">Cheques</div>
+											<div class="item-after">
+												<a class="link external" href=" {{ url_for('infocheque', id=cuenta.id) }}">
+													<img src="../static/imagenes/right-arrow.png"></img>
+												</a>
+											</div>
+											{% elif cuenta.id_Tipocuenta == 4 %}
+											<div class="item-subtitle" style="font-family: ubuntu; font-weight: bold; color: black; font-size: 16px;">Tipo de cuenta:</div>
+											<div class="item-subtitle" style="font-family: ubuntu; color: black; font-size: 16px; margin-left: 5px;">Préstamo</div>
+											<div class="item-after">
+												<a class="link external" href=" {{ url_for('infoprestamo', id=cuenta.id) }}">
+													<img src="../static/imagenes/right-arrow.png"></img>
+												</a>
+											</div>
+											{% endif %}
+										</div>
+										{% if cuenta.id_Moneda == 67 %}
+										<div class="item-title-row">
+											<div class="item-subtitle" style="font-family: ubuntu; font-weight: bold; color: black; font-size: 16px;">Moneda:</div>
+											<div class="item-subtitle" style="font-family: ubuntu; color: black; font-size: 16px; margin:auto; margin-left: 5px;">Peso Colombiano</div>
+										</div>
+										<div class="item-title-row">
+											<div class="item-subtitle" style="font-family: ubuntu; font-weight: bold; color: black; font-size: 16px;">Saldo:</div>
+											<div class="item-subtitle" style="font-family: ubuntu; color: black; font-size: 16px; margin:auto; margin-left: 5px;">{{ cuenta.Saldo_COP }} COP</div>
+										</div>
+										{% else %}
+											{% for moneda in monedas %}
+												{% if moneda.id == cuenta.id_Moneda %}
+												<div class="item-title-row">
+													<div class="item-subtitle" style="font-family: ubuntu; font-weight: bold; color: black; font-size: 16px;">Moneda:</div>
+													<div class="item-subtitle" style="font-family: ubuntu; color: black; font-size: 16px; margin:auto; margin-left: 5px;">{{ moneda.Nombre|truncate(14, true) }}</div>
+												</div>
+												<div class="item-title-row">
+													<div class="item-subtitle" style="font-family: ubuntu; font-weight: bold; color: black; font-size: 16px;">Saldo:</div>
+													<div class="item-subtitle" style="font-family: ubuntu; color: black; font-size: 16px; margin:auto; margin-left: 5px;">{{ cuenta.Saldo }} {{ moneda.Simbolo }}</div>
+												</div>
+												{% endif %}
+											{% endfor %}
+											<div class="item-title-row">
+												<div class="item-subtitle" style="font-family: ubuntu; font-weight: bold; color: black; font-size: 16px;">Saldo COP:</div>
+												<div class="item-subtitle" style="font-family: ubuntu; color: black; font-size: 16px; margin:auto; margin-left: 5px;">${{ cuenta.Saldo_COP }}</div>
+											</div>
+										{% endif %}
+									</div>
+								</div>
+								<div class="sortable-handler"></div>
+							</li>
+							{% endif %}
+							{% endfor %}
+						</ul>
+					</div>
+					<div>
+						<center>
+								{% for message in get_flashed_messages() %}
+									<span style="color:red; font-weight:bold; font-family: ubuntu; font-size: 18px;">{{ message }}</span>
+								{% endfor %}
+						</center>
+					</div>
+				</div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../static/lib/framework7/js/framework7.min.js"></script>
+    <!-- Path to your app js-->
+    <script type="text/javascript" src="../static/js/my-app.js"></script>
+</body>
+</html>

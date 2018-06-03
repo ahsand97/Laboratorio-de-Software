@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<!-- Color theme for statusbar -->
+		<meta name="theme-color" content="#2196f3">
+		<!-- Your app title -->
+		<title>Información</title>
+		<!-- Path to Framework7 Library CSS -->
+		<link rel="stylesheet" href="../../static/lib/framework7/css/framework7.min.css">
+		<link rel="stylesheet" type="text/css" href="../../static/lib/framework7/css/framework7-icons.css">
+		<!-- Path to your custom app styles-->
+
+		<link rel="stylesheet" type="text/css" href="../../static/css/cuentas.css">
+		<link rel="stylesheet" type="text/css" href="../../static/css/fuentespropias.css">
+		<link rel="stylesheet" href="../../static/css/botones.css">
+	</head>
+	<body>
+		<div id="app">
+			<!-- Statusbar overlay -->
+			<div class="statusbar"></div>
+			<!-- Your main view, should have "view-main" class -->
+			<div class="view view-main">
+				<!-- Initial Page, "data-name" contains page name -->
+				<div data-name="home" class="page">
+					<div class="navbar" style="background: #37C5C3; height: 13%;">
+						<div class="navbar-inner sliding">
+							<div class="left">
+								<img id="logoImagenLogin" src="../../static/imagenes/logo.png" style="height: 60px; position: relative; max-width:100px; margin-top: 15px;"/>
+							</div>
+							<div class="title" style="font-family: himelody; border-radius: 5px; border: 1px solid transparent; font-size: 40px;">Info. Cuenta</div>
+						</div>
+					</div>
+					<div class="toolbar no-shadow toolbar-bottom-md" style="width: 100%; background: #37C5C3; background-size:cover; padding: 3%;">
+						<div class="toolbar-inner" style="border-radius: 5px; border: 1px solid transparent; border-top: 1px solid transparent; border-bottom: 1px solid transparent;">
+							<a class="link external" href="{{ url_for('principal')  }}">
+								<i class="f7-icons" style="color: black;">home_fill</i>
+							</a>
+							<a class="link external" href="{{ url_for('trabajando') }}">
+								<i class="f7-icons" style="color: black;">list_fill</i>
+							</a>
+							<a class="link external" href=" {{ url_for('cuentas') }}">
+								<i class="f7-icons" style="color: black;">undo</i>
+							</a>
+						</div>
+					</div>
+					<div id="loginContenedor" class="page-content" style="-webkit-font-smoothing: antialiased; margin-top: 13px;">
+						<div class="list simple-list" style="margin: auto; width: 93%; background: white; padding: 3px 3px 3px 3px; margin-top: 30px; margin-bottom: -15px; border-radius: 10px;">
+							<ul>
+								<li>
+									<div class="item-title-row">
+										<div class="item-title" style="font-family: ubuntu; font-weight: bold; color: black; font-size: 22px;">Nombre:</div>
+										<div class="item-after" style="font-family: ubuntu; font-size: 16px; color: black; margin-top: 2px;">{{ cuenta.Nombre }}</div>
+									</div>
+								</li>
+								<li>
+									<div class="item-title-row">
+										<div class="item-title" style="font-family: ubuntu; font-weight: bold; color: black; font-size: 22px;">Tipo de Cuenta:</div>
+										<div class="item-after" style="font-family: ubuntu; font-size: 16px; color: black; margin-top: 2px;">Crédito</div>
+									</div>
+								</li>
+								<li>
+									<div class="item-title-row">
+										<div class="item-title" style="font-family: ubuntu; font-weight: bold; color: black; font-size: 22px;">Moneda:</div>
+										<div class="item-after" style="font-family: ubuntu; font-size: 16px; color: black; margin-top: 2px;">{{ moneda.Nombre }}</div>
+									</div>
+								</li>
+								{% if moneda.id == 67 %}
+								<li>
+									<div class="item-title-row">
+										<div class="item-title" style="font-family: ubuntu; font-weight: bold; color: black; font-size: 22px;">Saldo:</div>
+										<div class="item-after" style="font-family: ubuntu; font-size: 16px; color: black; margin-top: 2px;">{{ cuenta.Saldo_COP }} COP</div>
+									</div>
+								</li>
+								{% else %}
+								<li>
+									<div class="item-title-row">
+										<div class="item-title" style="font-family: ubuntu; font-weight: bold; color: black; font-size: 22px;">Saldo:</div>
+										<div class="item-after" style="font-family: ubuntu; font-size: 16px; color: black; margin-top: 2px;">{{ cuenta.Saldo }} {{ moneda.Simbolo }}</div>
+									</div>
+								</li>
+								<li>
+									<div class="item-title-row">
+										<div class="item-title" style="font-family: ubuntu; font-weight: bold; color: black; font-size: 22px;">Saldo COP:</div>
+										<div class="item-after" style="font-family: ubuntu; font-size: 16px; color: black; margin-top: 2px;">${{ cuenta.Saldo_COP }}</div>
+									</div>
+								</li>
+								{% endif %}
+								{% if cuenta.Descripcion %}
+								<li>
+									<div class="item-title-row">
+										<div class="item-title" style="font-family: ubuntu; font-weight: bold; color: black; font-size: 22px;">Descripción:</div>
+										<div class="item-after" style="font-family: ubuntu; font-size: 16px; color: black; margin-top: 2px;">{{ cuenta.Descripcion }}</div>
+									</div>
+								</li>
+								{% endif %}
+								{% if moneda.id == 67 %}
+								<li>
+									<div class="item-title-row">
+										<div class="item-title" style="font-family: ubuntu; font-weight: bold; color: black; font-size: 22px;">Límite de Crédito:</div>
+										<div class="item-after" style="font-family: ubuntu; font-size: 16px; color: black; margin-top: 2px;">{{ credito.Limite_COP }} COP</div>
+									</div>
+								</li>
+								{% else %}
+								<li>
+									<div class="item-title-row">
+										<div class="item-title" style="font-family: ubuntu; font-weight: bold; color: black; font-size: 22px;">Límite de Crédito:</div>
+										<div class="item-after" style="font-family: ubuntu; font-size: 16px; color: black; margin-top: 2px;">{{ credito.Limite }} {{ moneda.Simbolo }}</div>
+									</div>
+								</li>
+								<li>
+									<div class="item-title-row">
+										<div class="item-title" style="font-family: ubuntu; font-weight: bold; color: black; font-size: 22px;">Lím. Créd. COP:</div>
+										<div class="item-after" style="font-family: ubuntu; font-size: 16px; color: black; margin-top: 2px;">${{ credito.Limite_COP }}</div>
+									</div>
+								</li>
+								{% endif %}
+								<li>
+									<div class="item-title-row">
+										<div class="item-title" style="font-family: ubuntu; font-weight: bold; color: black; font-size: 22px;">Fecha de Pago Límite:</div>
+										<div class="item-after" style="font-family: ubuntu; font-size: 16px; color: black; margin-top: 2px;">{{ credito.Fecha_Pago }}</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+						<div>
+							<center>
+								{% for message in get_flashed_messages() %}
+								<span style="color:red; font-weight:bold; font-family: ubuntu; font-size: 18px;">{{ message }}</span>
+								{% endfor %}
+							</center>
+						</div>
+						<!--<br>
+						<center>
+							<div class="btn-container" style="margin-bottom: -10px;">
+								<a href="{{ url_for('trabajando')  }}" class="btn external" style="width: 150px; height: 40px; line-height: 40px; background-color: transparent; font-family: signika-regular; font-size: 18px; color: #83F243;">EDITAR CUENTA</a>
+							</div>
+						</center>
+						</br>-->
+						<br>
+							<center>
+								<div class="btn-container" style="margin-top: 20px;">
+									<a href="{{ url_for('DeleteAccount', id=cuenta.id )  }}" class="btn external" style="width: 160px; height: 40px; line-height: 40px; background-color: red; font-family: signika-regular; font-size: 18px; color: white;">ELIMINAR CUENTA</a>
+								</div>
+							</center>
+						</br>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="../../static/lib/framework7/js/framework7.min.js"></script>
+		<!-- Path to your app js-->
+		<script type="text/javascript" src="../../static/js/my-app.js"></script>
+		<script src='../../static/js/jquery.min.js'></script>
+	</body>
+</html>

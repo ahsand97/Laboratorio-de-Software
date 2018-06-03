@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Required meta tags-->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<!-- Color theme for statusbar -->
+		<meta name="theme-color" content="#2196f3">
+		<!-- Your app title -->
+		<title>Nueva Transferencia</title>
+		<!-- Path to Framework7 Library CSS -->
+		<link rel="stylesheet" href="../../../static/lib/framework7/css/framework7.min.css">
+		<link rel="stylesheet" type="text/css" href="../../../static/lib/framework7/css/framework7-icons.css">
+		<!-- Path to your custom app styles-->
+		<link rel="stylesheet" href="../../../static/css/modificacion.css">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="../../../static/css/fuentespropias.css">
+		
+		<link rel="stylesheet" href="../../../static/css/botones.css">
+
+	</head>
+	<body>
+		<!-- App root element -->
+		<div id="app">
+			<!-- Statusbar overlay -->
+			<div class="statusbar"></div>
+			<!-- Your main view, should have "view-main" class -->
+			<div class="view view-main">
+				<!-- Initial Page, "data-name" contains page name -->
+				<div data-name="home" class="page">
+					<div class="navbar" style="background: #37C5C3; height: 13%;">
+						<div class="navbar-inner sliding">
+							<div class="left">
+								<img src="../../../static/imagenes/logo.png" style="height: 60px; position: relative; max-width:100px; margin-top: 15px;"/>
+							</div>
+							<div class="title" style="font-family: himelody; border-radius: 5px; border: 1px solid transparent; font-size: 40px;">Nueva C. Cred.</div>
+						</div>
+					</div>
+					<div class="page-content" style="background-size:cover; width: 100%; margin-top: 8px;"><!--background: #3d3935-->
+						{% block content %}
+						<form method="post">
+						{{ form.hidden_tag() }}
+							<div class="list inline-labels no-hairlines-md" style="margin: auto; width: 95%; background: white; padding: 3px 3px 3px 3px; margin-top: 30px; margin-bottom: -15px; border-radius: 10px;">
+								<ul>
+									<li>
+										<div class="item-content">
+											<div class="item-media">
+												<i class="material-icons" style="margin-left: 8px;">format_align_justify</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu;">Nombre:</div>
+												<div class="item-after" style="font-family: ubuntu;">{{ cuenta.Nombre }}</div>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="item-content">
+											<div class="item-media">
+												<i class="material-icons" style="margin-left: 8px;">format_list_numbered</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu;">Tipo de cuenta:</div>
+												<div class="item-after" style="font-family: ubuntu;">Crédito</div>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="item-content">
+											<div class="item-media">
+												<i class="material-icons" style="margin-left: 8px;">credit_card</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu;">Moneda:</div>
+												<div class="item-after" style="font-family: ubuntu;">{{ moneda.Nombre }}</div>
+											</div>
+										</div>
+									</li>
+									{% if moneda.id == 67 %}
+									<li>
+										<div class="item-content">
+											<div class="item-media">
+												<i class="material-icons" style="margin-left: 8px;">attach_money</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu;">Saldo:</div>
+												<div class="item-after" style="font-family: ubuntu;">{{ cuenta.Saldo_COP }} COP</div>
+											</div>
+										</div>
+									</li>
+									{% else %}
+									<li>
+										<div class="item-content">
+											<div class="item-media">
+												<i class="material-icons" style="margin-left: 8px;">attach_money</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu;">Saldo:</div>
+												<div class="item-after" style="font-family: ubuntu;">{{ cuenta.Saldo }} {{ moneda.Simbolo }}</div>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="item-content">
+											<div class="item-media">
+												<i class="material-icons" style="margin-left: 8px;">attach_money</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu;">Saldo COP:</div>
+												<div class="item-after" style="font-family: ubuntu;">${{ cuenta.Saldo_COP }}</div>
+											</div>
+										</div>
+									</li>
+									{% endif %}
+									{% if cuenta.Descripcion %}
+									<li>
+										<div class="item-content">
+											<div class="item-media">
+												<i class="material-icons" style="margin-left: 8px;">info_outline</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu;">Descripción:</div>
+												<div class="item-after" style="font-family: ubuntu;">{{ cuenta.Descripcion }}</div>
+											</div>
+										</div>
+									</li>
+									{% endif %}
+									<li class="item-content item-input">
+										<div class="item-media">
+											<i class="material-icons" style="margin-bottom: 8px; margin-left: 8px;">attach_money</i>
+										</div>
+										<div class="item-inner">
+											<div class="item-input-wrap">
+												{{ form.limite(type="number", min=0, step="0.01", placeholder="Límite", style="font-family: ubuntu;") }}
+												<!--<input type="text" placeholder="Nombre" style="font-family: ubuntu;">-->
+												<span class="input-clear-button"></span>
+											</div>
+										</div>
+									</li>
+									{% for error in form.limite.errors %}
+									<center>
+										<span style="color: red; font-weight:bold; font-family: ubuntu;">{{ error }}</span>
+									</center>
+									{% endfor %}
+									<li class="item-content item-input">
+										<div class="item-media">
+											<i class="material-icons" style="margin-bottom: 8px; margin-left: 8px;">date_range</i>
+										</div>
+										<div class="item-inner">
+											<div class="item-input-wrap">
+												{{ form.fecha_pago(type="text", placeholder="Fecha Límite", readonly="readonly", id="demo-calendar-date-format", style="font-family: ubuntu") }}
+												<!--<input type="text" placeholder="Fecha Límite" readonly="readonly" id="demo-calendar-date-format"/>-->
+												<span class="input-clear-button"></span>
+											</div>
+										</div>
+									</li>
+									{% for error in form.fecha_pago.errors %}
+									<center>
+										<span style="color: red; font-weight:bold; font-family: ubuntu;">{{ error }}</span>
+									</center>
+									{% endfor %}
+								</ul>
+							</div>
+							<div>
+								<center>
+									{% for message in get_flashed_messages() %}
+									<span style="color:red; font-weight:bold; font-family: ubuntu; font-size: 18px;">{{ message }}</span>
+									{% endfor %}
+								</center>
+							</div>
+							<div class="block-footer">
+								<center>
+									<div class="btn-container" style="margin-top: 80px;">
+										{{ form.submit(class_="btn external", value="CREAR", style="width: 100px; height: 40px; line-height: 40px; background-color: green; font-family: signika-regular; font-size: 18px; color: white; border-width: 0px;") }}
+									</div>
+									<div class="btn-container">
+										<a href="{{ url_for('cuentas')}}" class="btn external" style="width: 100px; height: 40px; line-height: 40px; background-color: red; font-family: signika-regular; font-size: 18px; color: white; margin-top: 20px;">CANCELAR</a>
+									</div>
+								</center>
+							</div>
+						</form>
+					{% endblock %}
+					</div>  
+				</div>
+			</div>
+		</div>
+		<!-- Path to Framework7 Library JS-->
+		<script type="text/javascript" src="../../../static/lib/framework7/js/framework7.min.js"></script>
+		<!-- Path to your app js-->
+		<script type="text/javascript" src="../../../static/js/my-app.js"></script>
+		
+		<script src='../../../static/js/jquery.min.js'></script>
+		
+	</body>
+</html>

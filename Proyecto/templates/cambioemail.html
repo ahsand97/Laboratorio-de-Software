@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Required meta tags-->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<!-- Color theme for statusbar -->
+		<meta name="theme-color" content="#2196f3">
+		<!-- Your app title -->
+		<title>Cambios Perfil</title>
+		<!-- Path to Framework7 Library CSS -->
+		<link rel="stylesheet" href="../static/lib/framework7/css/framework7.min.css">
+		<!-- Path to your custom app styles-->
+		<link rel="stylesheet" href="../static/css/fuentespropias.css">
+		<link rel="stylesheet" href="../static/css/modificacionlina.css">
+		<link rel="stylesheet" href="../static/css/botones.css">
+	</head>
+	<body>        
+		<!--LOGIN SCREEN-->
+		<div class="view view-main">
+			<div  class="login-screen modal-in">
+				<div class="view">
+					<div class="page">
+						<div id="loginContenedor" class="page-content login-screen-content">
+							<div id="navbar" class="navbar">
+								<div id="navbarInner" class="navbar-inner">
+									<div class="login-screen-title">
+										<img src="../static/imagenes/logo.png" style="height: 60px; position: relative; max-width:100px; margin-top: 15px;"/>
+									</div>
+								
+								</div>
+							</div>
+							<div class="page-content">
+								{% block content %}
+								<form style="position: relative; top: -50px" method="post">
+									{{ form.hidden_tag() }}
+									<div class="list">
+										<ul>
+											<li class="item-content item-input">
+												<div class="item-inner">
+													<div style="color:white; font-weight:bold; font-size: 15px; margin: 5px" class="item-title item-label"></div>
+													<div class="item-input-wrap">
+														{{ form.email(class_='item-input-wrap', style="background-color: white; font-family: ubuntu; padding-left:5px; border-radius: 5px; border: 1px solid transparent; border-top: none;  border-bottom: 1px solid #DDD;", type="text", placeholder="Nueva Dirección de Correo Electrónico") }}
+													</div>
+													{% for error in form.email.errors %}
+													<span style="color: red; font-weight:bold; font-family: ubuntu;">{{ error }}</span>
+													{% endfor %}
+												</div>
+											</li>
+										</ul>
+									</div>
+									<div id="navbarRedes">
+										<div class="toolbar toolbar-bottom-md"  style="position: fixed; bottom: 0; width: 100%; background: #37C5C3  ; background-size:cover; padding: 3%;">
+											<div class="toolbar-inner" style="border-radius: 5px; border: 1px solid transparent; border-top: 1px solid transparent; border-bottom: 1px solid transparent;">
+												{{ form.submit(class_="submit", type="image", src="../../static/imagenes/check.png", style="margin-left: 50px;") }}
+												<a class="link external" href=" {{ url_for('EditProfile') }}" style="margin-right: 50px;">
+													<img src="../../static/imagenes/cross.png" ></img>
+												</a>
+											</div>
+										</div>
+									</div>
+								</form>
+								{% endblock %}
+								<div>
+									<center>
+										{% for message in get_flashed_messages() %}
+											<span style="color:red; font-weight:bold; font-family: ubuntu; font-size: 18px;">{{ message }}</span>
+										{% endfor %}
+									</center>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--LOGIN SCREEN-->        
+		</div>
+		<!-- Path to Framework7 Library JS-->
+		<script type="text/javascript" src="../static/lib/framework7/js/framework7.min.js"></script>
+		<!-- Path to your app js-->
+		<script type="text/javascript" src="../static/js/my-app.js"></script>
+		<script src='../static/js/jquery.min.js'></script>
+	</body>
+</html>
