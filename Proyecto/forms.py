@@ -12,10 +12,10 @@ class LoginForm(FlaskForm):
 
 class RegistrationForm(FlaskForm):
 	name = StringField('Nombre', validators=[DataRequired(message='Llena el campo.')])
-	username = StringField('Usuario', validators=[DataRequired(), Length(min=4, message= 'Nombre de usuario debe contener más de 4 caracteres.'.decode('utf-8')), Length(max=20, message= 'Nombre de usuario debe contener menos de 20 caracteres.')])
-	email = StringField('Email', validators=[DataRequired(), Email()])
-	password = PasswordField('Contraseña'.decode('utf-8'), validators=[DataRequired(), Length(min=4, message= 'Contraseña debe contener más de 4 caracteres.'.decode('utf-8'))])
-	password2 = PasswordField('Repite Contraseña', validators=[DataRequired(), EqualTo('password')])
+	username = StringField('Usuario', validators=[DataRequired(message='Llena el campo.'), Length(min=4, message= 'Nombre de usuario debe contener más de 4 caracteres.'.decode('utf-8')), Length(max=20, message= 'Nombre de usuario debe contener menos de 20 caracteres.')])
+	email = StringField('Email', validators=[DataRequired(message='Llena el campo.'), Email()])
+	password = PasswordField('Contraseña'.decode('utf-8'), validators=[DataRequired(message='Llena el campo.'), Length(min=4, message= 'Contraseña debe contener más de 4 caracteres.'.decode('utf-8'))])
+	password2 = PasswordField('Repite Contraseña', validators=[DataRequired(message='Llena el campo.'), EqualTo('password')])
 	submit = SubmitField('Register')
 	
 	def validate_username(self, username):
@@ -41,7 +41,7 @@ class EditarNombre(FlaskForm):
 	submit = SubmitField('Nombre')
 
 class EditarUsuario(FlaskForm):
-	usuario = StringField('Usuario', validators=[DataRequired(), Length(min=4, message= 'Nombre de usuario debe contener más de 4 caracteres.'.decode('utf-8')), Length(max=20, message= 'Nombre de usuario debe contener menos de 20 caracteres.')])
+	usuario = StringField('Usuario', validators=[DataRequired(message='Llena el campo.'), Length(min=4, message= 'Nombre de usuario debe contener más de 4 caracteres.'.decode('utf-8')), Length(max=20, message= 'Nombre de usuario debe contener menos de 20 caracteres.')])
 	submit = SubmitField('Usuario')
 	
 	'''def validate_usuario(self, usuario):
@@ -50,7 +50,7 @@ class EditarUsuario(FlaskForm):
 			raise ValidationError('Nombre de usuario no disponible.')'''
 			
 class EditarCorreo(FlaskForm):
-	email = StringField('Email', validators=[DataRequired(), Email(message='novalida')])
+	email = StringField('Email', validators=[DataRequired(message='Llena el campo.'), Email(message='novalida')])
 	submit = SubmitField('Correo')
 	
 	'''def validate_email(self, email):
@@ -60,8 +60,8 @@ class EditarCorreo(FlaskForm):
 
 class EditarClave(FlaskForm):
 	passwordactual = PasswordField('Contraseña'.decode('utf-8'), validators=[DataRequired(message='Llena el campo.')])
-	password = PasswordField('Contraseña'.decode('utf-8'), validators=[DataRequired(), Length(min=4, message= 'Contraseña debe contener más de 4 caracteres.'.decode('utf-8'))])
-	password2 = PasswordField('Repite Contraseña', validators=[DataRequired(), EqualTo('password')])
+	password = PasswordField('Contraseña'.decode('utf-8'), validators=[DataRequired(message='Llena el campo.'), Length(min=4, message= 'Contraseña debe contener más de 4 caracteres.'.decode('utf-8'))])
+	password2 = PasswordField('Repite Contraseña', validators=[DataRequired(message='Llena el campo.'), EqualTo('password')])
 	submit = SubmitField('Clave') 
 
 class CreditoForm(FlaskForm):
@@ -85,7 +85,7 @@ class TransaccionForm(FlaskForm):
 	fecha = StringField('Fecha', validators=[DataRequired(message='Llena el campo.')])
 	valor = DecimalField('Valor', validators=[DataRequired(message='Llena el campo.')])
 	descripcion = StringField('Descripcion')
-	tipo = SelectField('Tipo', choices=[('1','Ingreso'),('2','Egreso'),('3','Transferencia')], validators=[DataRequired(message='Llena el campo.')])
+	tipo = SelectField('Tipo', choices=[('1','Ingreso'),('2','Egreso'),('3','Transferencia')], validators=[DataRequired(message='Selecciona categoría.'.decode('utf-8'))])
 	submit = SubmitField('Crear')
 
 class TransferenciaForm(FlaskForm):
