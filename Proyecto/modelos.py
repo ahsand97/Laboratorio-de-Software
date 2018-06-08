@@ -73,6 +73,7 @@ class Monedas(db.Model):
 	Simbolo = db.Column(db.Text, nullable=False)
 	Cuentas_Relacion = db.relationship('Cuentas', backref='Moneda')
 	Presupuestos_Relacion = db.relationship('Presupuestos', backref='Moneda')
+	Transferencias_Relacion = db.relationship('Transferencias', backref='Moneda')
 	
 	def __repr__(self):
 		return '<Monedas {}>'.format(self.Nombre)
@@ -91,7 +92,6 @@ class Cheques(db.Model):
 	Valor_COP = db.Column(db.Integer, nullable=False)
 	Fecha = db.Column(db.Text, nullable=False)
 	id_Cuenta = db.Column(db.Integer, db.ForeignKey('cuentas.id'), nullable=False)
-	Reembolsos_Relacion = db.relationship('Reembolsos', backref='Cheque')
 
 class Prestamos(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -149,22 +149,16 @@ class Transacciones(db.Model):
 	id_Cuenta = db.Column(db.Integer, db.ForeignKey('cuentas.id'), nullable=False)
 	
 	Transaccion_Presupuesto_Cuenta_Relacion= db.relationship('Presupuesto_cuenta', secondary='transaccion_presupuesto_cuenta', backref=db.backref('Transacciones', lazy='dynamic'))
-	Ingresos_Relacion = db.relationship('Ingresos', backref='Transaccion')
-	Egresos_Relacion = db.relationship('Egresos', backref='Transaccion')
-	Reembolsos_Relacion = db.relationship('Reembolsos', backref='Transaccion')
 	Transferencias_Relacion = db.relationship('Transferencias', backref='Transaccion')
 	
 class Presupuesto_cuenta(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	id_Cuenta = db.Column(db.Integer, db.ForeignKey('cuentas.id'), nullable=False)
 	id_Presupuesto = db.Column(db.Integer, db.ForeignKey('presupuestos.id'), nullable=False)
-
-class Reembolsos(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
-	id_Cheque = db.Column(db.Integer, db.ForeignKey('cheques.id'), nullable=False)
-	id_Transaccion = db.Column(db.Integer, db.ForeignKey('transacciones.id'), nullable=False)
 	
 class Transferencias(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
+	Valor = db.Column(db.REAL, nullable=True)
 	id_Transaccion = db.Column(db.Integer, db.ForeignKey('transacciones.id'), nullable=False)
-	id_CuentaDestino = db.Column(db.Integer, db.ForeignKey('cuentas.id'), nullable=False)
+	id_CuentaDestino = db.Column(db.Integer, db.ForeignKey('cuentas.id'), nullable=True)
+	id_MonedaDestino = db.Column(db.Integer, db.ForeignKey('monedas.id'), nullable=False)
