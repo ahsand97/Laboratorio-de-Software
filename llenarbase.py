@@ -1,7 +1,7 @@
 from Proyecto import db
 from Proyecto.modelos import Tipocuenta, Monedas, Usuarios
 ###################################################################
-user = Usuarios(Nombre='Estandar', Usuario='Estandar', Correo='Estandar@estandar.com')
+user = Usuarios(Nombre='Estandar', Usuario='a', Correo='a')
 user.set_password('123')
 db.session.add(user)
 ###################################################################
