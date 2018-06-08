@@ -16,8 +16,6 @@
     <link rel="stylesheet" href="../static/css/modificacionlina.css">
 	<link rel="stylesheet" href="../static/css/botones.css">
 	
-	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.rawgit.com/prashantchaudhary/ddslick/master/jquery.ddslick.min.js" ></script>
 	
 </head>
 <body>
@@ -44,7 +42,7 @@
 							{% endfor %}
 						</div>
 					</center>
-					{% if users|length == 1 %}
+					{% if users|length <= 1 %}
                     <div class="block-footer">
 						<div class="btn-container" style="margin-bottom: 10px;">
 						  <a href="{{ url_for('acceso')  }}" class="btn external" style="width: 150px; height: 40px; line-height: 40px; background-color: green; font-family: signika-regular; font-size: 18px; color: white;">ACCEDER</a>
@@ -69,8 +67,6 @@
 	</div>
 	    <script type="text/javascript" src="../static/lib/framework7/js/framework7.min.js"></script>
     <!-- Path to your app js-->
-	
     <script type="text/javascript" src="../static/js/my-app.js"></script>
-	<script src='../static/js/jquery.min.js'></script>
 </body>
 </html>

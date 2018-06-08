@@ -21,7 +21,7 @@
 		
 		<link rel="stylesheet" href="../../static/css/botones.css">
 		
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script type="text/javascript" src="https://cdn.rawgit.com/prashantchaudhary/ddslick/master/jquery.ddslick.min.js" ></script>
 		
 	</head>
@@ -60,21 +60,37 @@
 										</style>
 										<select id="myDropdown" name="myDropdown">
 											{% for cuenta in cuentas %}
+											{% if cuenta.id_Moneda == 67 %}
 											{% if cuenta.id_Tipocuenta == 1 %}
-											<option value="{{ cuenta.id }}" data-imagesrc="../../static/imagenes/Nueva Carpeta/{{ cuenta.Logo }}.png" data-description="Tipo: Efectivo">{{ cuenta.Nombre }}</option>
+											<option value="{{ cuenta.id }}" data-imagesrc="../../../static/imagenes/Nueva Carpeta/{{ cuenta.Logo }}.png" data-description="Tipo: Efectivo, Saldo= {{ cuenta.Saldo_COP }} COP">Nombre: {{ cuenta.Nombre }}</option>
 											{% elif cuenta.id_Tipocuenta == 2 %}
-											<option value="{{ cuenta.id }}" data-imagesrc="../../static/imagenes/Nueva Carpeta/{{ cuenta.Logo }}.png" data-description="Tipo: Crédito">{{ cuenta.Nombre }}</option>
+											<option value="{{ cuenta.id }}" data-imagesrc="../../../static/imagenes/Nueva Carpeta/{{ cuenta.Logo }}.png" data-description="Tipo: Crédito, Saldo= {{ cuenta.Saldo_COP }} COP">Nombre: {{ cuenta.Nombre }}</option>
 											{% elif cuenta.id_Tipocuenta == 3 %}
-											<option value="{{ cuenta.id }}" data-imagesrc="../../static/imagenes/Nueva Carpeta/{{ cuenta.Logo }}.png" data-description="Tipo: Cheque">{{ cuenta.Nombre }}</option>
+											<option value="{{ cuenta.id }}" data-imagesrc="../../../static/imagenes/Nueva Carpeta/{{ cuenta.Logo }}.png" data-description="Tipo: Cheque, Saldo= {{ cuenta.Saldo_COP }} COP">Nombre: {{ cuenta.Nombre }}</option>
 											{% elif cuenta.id_Tipocuenta == 4 %}
-											<option value="{{ cuenta.id }}" data-imagesrc="../../static/imagenes/Nueva Carpeta/{{ cuenta.Logo }}.png" data-description="Tipo: Préstamo">{{ cuenta.Nombre }}</option>
+											<option value="{{ cuenta.id }}" data-imagesrc="../../../static/imagenes/Nueva Carpeta/{{ cuenta.Logo }}.png" data-description="Tipo: Préstamo, Saldo= {{ cuenta.Saldo_COP }} COP">Nombre: 	{{ cuenta.Nombre }}</option>
+											{% endif %}
+											{% else %}
+											{% for moneda in monedas %}
+											{% if moneda.id == cuenta.id_Moneda %}
+											{% if cuenta.id_Tipocuenta == 1 %}
+											<option value="{{ cuenta.id }}" data-imagesrc="../../../static/imagenes/Nueva Carpeta/{{ cuenta.Logo }}.png" data-description="Tipo: Efectivo, Saldo= {{ cuenta.Saldo }} {{ moneda.Simbolo }}">Nombre: {{ cuenta.Nombre }}</option>
+											{% elif cuenta.id_Tipocuenta == 2 %}
+											<option value="{{ cuenta.id }}" data-imagesrc="../../../static/imagenes/Nueva Carpeta/{{ cuenta.Logo }}.png" data-description="Tipo: Crédito, Saldo= {{ cuenta.Saldo }} {{ moneda.Simbolo }}">Nombre: {{ cuenta.Nombre }}</option>
+											{% elif cuenta.id_Tipocuenta == 3 %}
+											<option value="{{ cuenta.id }}" data-imagesrc="../../../static/imagenes/Nueva Carpeta/{{ cuenta.Logo }}.png" data-description="Tipo: Cheque, Saldo= {{ cuenta.Saldo }} {{ moneda.Simbolo }}">Nombre: {{ cuenta.Nombre }}</option>
+											{% elif cuenta.id_Tipocuenta == 4 %}
+											<option value="{{ cuenta.id }}" data-imagesrc="../../../static/imagenes/Nueva Carpeta/{{ cuenta.Logo }}.png" data-description="Tipo: Préstamo, Saldo= {{ cuenta.Saldo }} {{ moneda.Simbolo }}">Nombre: 	{{ cuenta.Nombre }}</option>
+											{% endif %}					
+											{% endif %}
+											{% endfor %}
 											{% endif %}
 											{% endfor %}
 										</select>
 										<input type="hidden" id="oculto" name="oculto">
 										<script>
 											$('#myDropdown').ddslick({
-												//width: 250,
+												width: 300,
 												onSelected: function(selectedData){
 													//callback function: do something with selectedData;
 													$('#oculto').val(selectedData.selectedData.value);
@@ -91,10 +107,15 @@
 										<div class="item-inner">
 											<div class="item-input-wrap">
 												<a class="item-link smart-select smart-select-init " style="font-family: ubuntu;">
+													<style>
+														div.title {font-family: himelody; font-size: 40px;}
+														div.navbar-inner.sliding {background-color: #37C5C3;}
+														div.item-title {font-family: ubuntu;}
+													</style>
 													{{ form.tipo }}
 													<div class="item-content">
 														<div class="item-inner">
-															<div class="item-title" style="font-family: ubuntu; font-weight: bold;">Categoría</div>
+															<div class="item-title" style="font-family: ubuntu; font-weight: bold;">Categoria</div>
 														</div>
 													</div>
 												</a>
@@ -107,7 +128,7 @@
 										</div>
 										<div class="item-inner">
 											<div class="item-input-wrap">
-												{{ form.valor(type= "number", min=0, step="0.01", placeholder="Valor", style="font-family: ubuntu;") }}
+												{{ form.valor(type= "number", min="0", step="0.01", placeholder="Valor", style="font-family: ubuntu;") }}
 												<!--<input type="number" placeholder="Saldo" style="font-family: ubuntu;">-->
 											</div>
 										</div>
@@ -140,7 +161,7 @@
 										</div>
 										<div class="item-inner">
 											<div class="item-input-wrap">
-												{{ form.descripcion(type= "text", placeholder="Descripción", style="font-family: ubuntu;") }}
+												{{ form.descripcion(type= "text", maxlength="100", placeholder="Descripción", style="font-family: ubuntu;") }}
 												<span class="input-clear-button"></span>
 											</div>
 										</div>
@@ -174,8 +195,5 @@
 		<script type="text/javascript" src="../../static/lib/framework7/js/framework7.min.js"></script>
 		<!-- Path to your app js-->
 		<script type="text/javascript" src="../../static/js/my-app.js"></script>
-		
-		<script src='../../static/js/jquery.min.js'></script>
-		
 	</body>
 </html>

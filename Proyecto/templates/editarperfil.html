@@ -12,6 +12,9 @@
 		<link rel="stylesheet" href="../../static/lib/framework7/css/framework7.min.css">
 		<link rel="stylesheet" type="text/css" href="../../static/lib/framework7/css/framework7-icons.css">
 		<!-- Path to your custom app styles-->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 		<link rel="stylesheet" type="text/css" href="../../static/css/cuentas.css">
 		<link rel="stylesheet" type="text/css" href="../../static/css/fuentespropias.css">
@@ -20,58 +23,102 @@
 	<body>
 		<div id="app">
 			<!-- Statusbar overlay -->
-			<div class="statusbar"></div>
 			<!-- Your main view, should have "view-main" class -->
 			<div class="view view-main">
 				<!-- Initial Page, "data-name" contains page name -->
 				<div data-name="home" class="page">
-					<div id="loginContenedor" class="page-content">
-						<div id="navbar" class="navbar">
-							<div id="navbarInner" class="navbar-inner">
-								<div class="login-screen-title">
-									<img id="logoImagenLogin" src="../../static/imagenes/logo.png" style="height: 60px; position: relative; max-width:100px; margin-top: 15px;"/>
-								</div>
-								<div class="title" style="font-family: himelody; border-radius: 5px; border: 1px solid transparent; font-size: 40px;">Editar Perfil</div>
+					<div class="navbar" style="background: #37C5C3; height: 13%;">
+						<div class="navbar-inner sliding">
+							<div class="left">
+								<img id="logoImagenLogin" src="../../static/imagenes/logo.png" style="height: 60px; position: relative; max-width:100px; margin-top: 15px;"/>
+							</div>
+							<div class="title" style="font-family: himelody; border-radius: 5px; border: 1px solid transparent; font-size: 40px;">Editar Perfil</div>
+							<div class="right">
+							<!--<a class="link sortable-toggle" data-sortable=".sortable">
+								<i class="f7-icons ">keyboard_fill</i>
+							</a>-->
 							</div>
 						</div>
-						<div class="list links-list">
+					</div>
+					<div class="toolbar no-shadow toolbar-bottom-md" style="width: 100%; background: #37C5C3; background-size:cover; padding: 3%;">
+						<div class="toolbar-inner" style="border-radius: 5px; border: 1px solid transparent; border-top: 1px solid transparent; border-bottom: 1px solid transparent;">
+							<a class="link external" href="{{ url_for('principal')  }}" style="margin:auto;">
+								<i class="f7-icons" style="color: black;">undo</i>
+							</a>
+						</div>
+					</div>
+					<div id="loginContenedor" class="page-content" style="-webkit-font-smoothing: antialiased;">
+						<div class="list links-list inline-labels no-hairlines-md" style="margin: auto; width: 90%; background: white; padding: 3px 3px 3px 3px; margin-top: 80px; margin-bottom: 30px; border-radius: 10px;">
 							<ul>
-								<br>
 								<li>
-									<a class="link external" href=" {{ url_for('ChangesProfileName') }}">
-										<div class="item-title-row">
-											<div id= "texto" class="item-title" style="font-family: signika-regular; font-weight: bold; color: white; font-size: 22px;">Editar Nombre</div>
+									<div class="item-content">
+										<div class="item-media">
+											<i class="material-icons" style="margin-left: 8px;">credit_card</i>
 										</div>
-									</a>
+										
+											<div class="item-subtitle" style="font-family: ubuntu; font-weight: bold; font-size: 20px; margin-left: 8px;">Nombre:</div>
+											<div class="item-subtitle" style="font-family: ubuntu; color: black; font-size: 18px; margin:auto; margin-left: 8px;">{{ user.Nombre|truncate(18, true) }}</div>
+										
+									</div>
 								</li>
-								</br>
-								<br>
-									<li>
-										<a class="link external" href=" {{ url_for('ChangesProfileUsername') }}">
-											<div class="item-title-row">
-												<div id= "texto" class="item-title" style="font-family: signika-regular; font-weight: bold; color: white; font-size: 22px;">Editar Nombre de Usuario</div>
+								<li>
+									<div class="item-content">
+										<a href="#" class="link popup-open" href="#" data-popup=".popupnombre" style="margin:auto;">											
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu; font-size: 20px; color: #2196f3;">EDITAR NOMBRE</div>
 											</div>
 										</a>
-									</li>
-								</br>
-								<br>
-									<li>
-										<a class="link external" href=" {{ url_for('ChangesProfileEmail') }}">
-											<div class="item-title-row">
-												<div id= "texto" class="item-title" style="font-family: signika-regular; font-weight: bold; color: white; font-size: 22px;">Editar Correo</div>
+									</div>
+								</li>
+								<li>
+									<div class="item-content">
+										<div class="item-media">
+											<i class="material-icons" style="margin-left: 8px;">credit_card</i>
+										</div>
+										
+											<div class="item-subtitle" style="font-family: ubuntu; font-weight: bold; font-size: 20px; margin-left: 8px;">Usuario:</div>
+											<div class="item-subtitle" style="font-family: ubuntu; color: black; font-size: 18px; margin:auto; margin-left: 8px;">{{ user.Usuario|truncate(18, true) }}</div>
+										
+									</div>
+								</li>
+								<li>
+									<div class="item-content">
+										<a href="#" class="link popup-open" href="#" data-popup=".popupusuario" style="margin:auto;">											
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu; font-size: 20px; color: #2196f3;">EDITAR USUARIO</div>
 											</div>
 										</a>
-									</li>
-								</br>
-								<br>
-									<li>
-										<a class="link external" href=" {{ url_for('ChangesProfilePassword') }}">
-											<div class="item-title-row">										
-												<div id= "texto" class="item-title" style="font-family: signika-regular; font-weight: bold; color: white; font-size: 22px;">Editar Contraseña</div>
+									</div>
+								</li>
+								<li>
+									<div class="item-content">
+										<div class="item-media">
+											<i class="material-icons" style="margin-left: 8px;">credit_card</i>
+										</div>
+										
+											<div class="item-subtitle" style="font-family: ubuntu; font-weight: bold; font-size: 20px; margin-left: 8px;">Correo:</div>
+											<div class="item-subtitle" style="font-family: ubuntu; color: black; font-size: 18px; margin:auto; margin-left: 8px;">{{ user.Correo|truncate(18, true) }}</div>
+										
+									</div>
+								</li>
+								<li>
+									<div class="item-content">
+										<a href="#" class="link popup-open" href="#" data-popup=".popupcorreo" style="margin:auto;">											
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu; font-size: 20px; color: #2196f3;">EDITAR CORREO</div>
 											</div>
 										</a>
-									</li>
-								</br>
+									</div>
+								</li>
+								<li>
+									<div class="item-content">
+										<a href="#" class="link popup-open" href="#" data-popup=".popupclave" style="margin:auto;">											
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu; font-size: 20px; color: #2196f3;">EDITAR CONTRASEÑA</div>
+											</div>
+										</a>
+									</div>
+								</li>
 							</ul>
 						</div>
 						<div>
@@ -81,24 +128,377 @@
 								{% endfor %}
 							</center>
 						</div>
-						<!--<br>
-						<center>
-							<div class="btn-container" style="margin-bottom: -10px;">
-								<a href="{{ url_for('trabajando')  }}" class="btn external" style="width: 150px; height: 40px; line-height: 40px; background-color: transparent; font-family: signika-regular; font-size: 18px; color: #83F243;">EDITAR CUENTA</a>
+					</div>
+					<div class="popup popupnombre">
+						<div class="navbar" style="background: #37C5C3; height: 13%;">
+							<div class="navbar-inner sliding">
+								<div class="title" style="font-family: himelody; border-radius: 5px; border: 1px solid transparent; font-size: 40px; margin:auto;">Editar Nombre</div>
 							</div>
-						</center>
-						</br>-->
-						<br>
-							<div id="navbarRedes">
-								<div id="navbarBottom" class="toolbar toolbar-bottom-md" style="position: fixed; bottom: 0; width: 100%; background: #37C5C3; background-size:cover; padding: 3%;">
-									<div class="toolbar-inner" style="border-radius: 5px; border: 1px solid transparent; border-top: 1px solid transparent; border-bottom: 1px solid transparent;">
-										<a class="link external" href="{{ url_for('principal')  }}" style="margin-left: 158.9845px;">
-											<i class="f7-icons" style="color: black;">undo</i>
-										</a>
-									</div>
+						</div>
+						<div class="page-content">
+							<form id="nombreform" method="POST">
+							{{ formnombre.hidden_tag() }}
+								<div class="list inline-labels no-hairlines-md" style="margin: auto; width: 95%; background: white; padding: 3px 3px 3px 3px; margin-bottom: -15px; border-radius: 10px;">
+									<ul>
+										<li class="item-content item-input">
+											<div class="item-media">
+												<i class="material-icons" style="margin-bottom: 8px; margin-left: 8px;">format_align_justify</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-input-wrap">
+													{{ formnombre.nombre(type="text", onfocus="ClickNombre()", onclick="ClickNombre()", maxlength="50", minlength="1", placeholder="Nuevo Nombre", style="font-family: ubuntu;") }}
+													<span class="input-clear-button"></span>
+												</div>
+												<script>
+													function ClickNombre() {
+														document.getElementById("errornombre").innerHTML = "";
+													}
+												</script>
+											</div>
+										</li>
+										<center>
+											<span id="errornombre" style="color: red; font-weight:bold; font-family: ubuntu;"></span>
+										</center>
+									</ul>
 								</div>
+								<div class="block-footer">
+									<center>
+										<div class="btn-container" style="margin-top: 40px;">
+											{{ formnombre.submit(class_="btn", id="nombresubmit", value="GUARDAR", style="width: 100px; height: 40px; line-height: 40px; background-color: green; font-family: signika-regular; font-size: 18px; color: white; border-width: 0px;") }}
+										</div>
+										<div class="btn-container">
+											<a href="#" class="link popup-close btn" style="width: 100px; height: 40px; line-height: 40px; background-color: red; font-family: signika-regular; font-size: 18px; color: white; margin-top: 20px;">CANCELAR</a>
+										</div>
+									</center>
+								</div>
+								<script>
+									$(document).ready(function()
+									{
+										$("#nombreform").submit(function(event)
+										{
+											event.preventDefault();
+											$.ajax({
+												dataType: "text",
+												type: "POST",
+												url: "{{ url_for('NameAjaxProcess') }}",
+												data: $('#nombreform').serialize(), // serializes the form's elements.
+												success: function (data){
+													if (data == '"no"')
+													{
+														document.getElementById("errornombre").innerHTML="Llena el campo.";
+													}
+													else if (data == '"igual"')
+													{
+														document.getElementById("errornombre").innerHTML="Nombre igual al nombre actual.";
+													}
+													else if (data == '"si"')
+													{
+														 window.location.href = "{{ url_for('NameAjaxDone') }}";
+													}
+													console.log(data) // display the returned data in the console.
+												}
+											});
+										});
+									});	
+								</script>
+							</form>
+						</div>
+					</div>
+					<div class="popup popupusuario">
+						<div class="navbar" style="background: #37C5C3; height: 13%;">
+							<div class="navbar-inner sliding">
+								<div class="title" style="font-family: himelody; border-radius: 5px; border: 1px solid transparent; font-size: 40px; margin:auto;">Editar Usuario</div>
 							</div>
-						</br>
+						</div>
+						<div class="page-content">
+							<form id="usuarioform" method="POST">
+							{{ formusuario.hidden_tag() }}
+								<div class="list inline-labels no-hairlines-md" style="margin: auto; width: 95%; background: white; padding: 3px 3px 3px 3px; margin-bottom: -15px; border-radius: 10px;">
+									<ul>
+										<li class="item-content item-input">
+											<div class="item-media">
+												<i class="material-icons" style="margin-bottom: 8px; margin-left: 8px;">format_align_justify</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-input-wrap">
+													{{ formusuario.usuario(type="text", onfocus="ClickUsuario()", onclick="ClickUsuario()", maxlength="20", minlength="4", placeholder="Nuevo nombre de usuario", style="font-family: ubuntu;") }}
+													<span class="input-clear-button"></span>
+												</div>
+												<script>
+													function ClickUsuario() {
+														document.getElementById("errorusuario").innerHTML = "";
+													}
+												</script>
+											</div>
+										</li>
+										<center>
+											<span id="errorusuario" style="color: red; font-weight:bold; font-family: ubuntu;"></span>
+										</center>
+									</ul>
+								</div>
+								<div class="block-footer">
+									<center>
+										<div class="btn-container" style="margin-top: 40px;">
+											{{ formusuario.submit(class_="btn", id="usuariosubmit", value="GUARDAR", style="width: 100px; height: 40px; line-height: 40px; background-color: green; font-family: signika-regular; font-size: 18px; color: white; border-width: 0px;") }}
+										</div>
+										<div class="btn-container">
+											<a href="#" class="link popup-close btn" style="width: 100px; height: 40px; line-height: 40px; background-color: red; font-family: signika-regular; font-size: 18px; color: white; margin-top: 20px;">CANCELAR</a>
+										</div>
+									</center>
+								</div>
+								<script>
+									$(document).ready(function()
+									{
+										$("#usuarioform").submit(function(event)
+										{
+											event.preventDefault();
+											$.ajax({
+												dataType: "text",
+												type: "POST",
+												url: "{{ url_for('UserAjaxProcess') }}",
+												data: $('#usuarioform').serialize(), // serializes the form's elements.
+												success: function (data){
+													if (data == '"no"')
+													{
+														document.getElementById("errorusuario").innerHTML="Llena el campo.";
+													}
+													else if (data == '"igual"')
+													{
+														document.getElementById("errorusuario").innerHTML="Nombre de usuario igual al actual.";
+													}
+													else if (data == '"nodisponible"')
+													{
+														document.getElementById("errorusuario").innerHTML="Nombre de usuario no disponible.";
+													}
+													else if (data == '"si"')
+													{
+														 window.location.href = "{{ url_for('UserAjaxDone') }}";
+													}
+													//console.log(data) // display the returned data in the console.
+												}
+											});
+										});
+									});	
+								</script>
+							</form>
+						</div>
+					</div>
+					<div class="popup popupcorreo">
+						<div class="navbar" style="background: #37C5C3; height: 13%;">
+							<div class="navbar-inner sliding">
+								<div class="title" style="font-family: himelody; border-radius: 5px; border: 1px solid transparent; font-size: 40px; margin:auto;">Editar Correo</div>
+							</div>
+						</div>
+						<div class="page-content">
+							<form id="correoform" method="POST">
+							{{ formcorreo.hidden_tag() }}
+								<div class="list inline-labels no-hairlines-md" style="margin: auto; width: 95%; background: white; padding: 3px 3px 3px 3px; margin-bottom: -15px; border-radius: 10px;">
+									<ul>
+										<li class="item-content item-input">
+											<div class="item-media">
+												<i class="material-icons" style="margin-bottom: 8px; margin-left: 8px;">format_align_justify</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-input-wrap">
+													{{ formcorreo.email(type="email", onfocus="ClickCorreo()", onclick="ClickCorreo()", minlength="1", placeholder="Nuevo e-mail", style="font-family: ubuntu;") }}
+													<span class="input-clear-button"></span>
+												</div>
+												<script>
+													function ClickCorreo() {
+														document.getElementById("errorcorreo").innerHTML = "";
+													}
+												</script>
+											</div>
+										</li>
+										<center>
+											<span id="errorcorreo" style="color: red; font-weight:bold; font-family: ubuntu;"></span>
+										</center>
+									</ul>
+								</div>
+								<div class="block-footer">
+									<center>
+										<div class="btn-container" style="margin-top: 40px;">
+											{{ formcorreo.submit(class_="btn", id="correosubmit", value="GUARDAR", style="width: 100px; height: 40px; line-height: 40px; background-color: green; font-family: signika-regular; font-size: 18px; color: white; border-width: 0px;") }}
+										</div>
+										<div class="btn-container">
+											<a href="#" class="link popup-close btn" style="width: 100px; height: 40px; line-height: 40px; background-color: red; font-family: signika-regular; font-size: 18px; color: white; margin-top: 20px;">CANCELAR</a>
+										</div>
+									</center>
+								</div>
+								<script>
+									$(document).ready(function()
+									{
+										$("#correoform").submit(function(event)
+										{
+											event.preventDefault();
+											$.ajax({
+												dataType: "text",
+												type: "POST",
+												url: "{{ url_for('EmailAjaxProcess') }}",
+												data: $('#correoform').serialize(), // serializes the form's elements.
+												success: function (data){
+													if (data == '["no"]')
+													{
+														document.getElementById("errorcorreo").innerHTML="Llena el campo.";
+													}
+													else if (data == '"igual"')
+													{
+														document.getElementById("errorcorreo").innerHTML="Correo igual al actual.";
+													}
+													else if (data == '"nodisponible"')
+													{
+														document.getElementById("errorcorreo").innerHTML="Dirección de correo no disponible.";
+													}
+													else if (data == '["novalida"]')
+													{
+														document.getElementById("errorcorreo").innerHTML="Dirección de correo no válida.";
+													}
+													else if (data == '"si"')
+													{
+														 window.location.href = "{{ url_for('EmailAjaxDone') }}";
+													}
+													//console.log(data) // display the returned data in the console.
+												}
+											});
+										});
+									});	
+								</script>
+							</form>
+						</div>
+					</div>
+					<div class="popup popupclave">
+						<div class="navbar" style="background: #37C5C3; height: 13%;">
+							<div class="navbar-inner sliding">
+								<div class="title" style="font-family: himelody; border-radius: 5px; border: 1px solid transparent; font-size: 40px; margin:auto;">Editar Clave</div>
+							</div>
+						</div>
+						<div class="page-content">
+							<form id="claveform" method="POST">
+							{{ formclave.hidden_tag() }}
+								<div class="list inline-labels no-hairlines-md" style="margin: auto; width: 95%; background: white; padding: 3px 3px 3px 3px; margin-bottom: -15px; border-radius: 10px;">
+									<ul>
+										<li class="item-content item-input">
+											<div class="item-media">
+												<i class="material-icons" style="margin-bottom: 8px; margin-left: 8px;">format_align_justify</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-input-wrap">
+													{{ formclave.passwordactual(type="password", onfocus="ClickClaveActual()", onclick="ClickClaveActual()", minlength="4", maxlength="50", autocomplete="new-password", placeholder="Contraseña Actual", style="font-family: ubuntu;") }}
+													<span class="input-clear-button"></span>
+												</div>
+												<script>
+													function ClickClaveActual() {
+														document.getElementById("errorclaveactual").innerHTML = "";
+													}
+												</script>
+											</div>
+										</li>
+										<center>
+											<span id="errorclaveactual" style="color: red; font-weight:bold; font-family: ubuntu;"></span>
+										</center>
+										<li class="item-content item-input">
+											<div class="item-media">
+												<i class="material-icons" style="margin-bottom: 8px; margin-left: 8px;">format_align_justify</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-input-wrap">
+													{{ formclave.password(type="password", onfocus="ClickClaveNueva()", onclick="ClickClaveNueva()", minlength="4", maxlength="50", autocomplete="new-password", placeholder="Nueva Contraseña", style="font-family: ubuntu;") }}
+													<span class="input-clear-button"></span>
+												</div>
+												<script>
+													function ClickClaveNueva() {
+														document.getElementById("errorclavenueva").innerHTML = "";
+													}
+												</script>
+											</div>
+										</li>
+										<center>
+											<span id="errorclavenueva" style="color: red; font-weight:bold; font-family: ubuntu;"></span>
+										</center>
+										<li class="item-content item-input">
+											<div class="item-media">
+												<i class="material-icons" style="margin-bottom: 8px; margin-left: 8px;">format_align_justify</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-input-wrap">
+													{{ formclave.password2(type="password", onfocus="ClickClaveConfirmacion()", onclick="ClickClaveConfirmacion()", minlength="4", maxlength="50", autocomplete="new-password", placeholder="Confirme Contraseña", style="font-family: ubuntu;") }}
+													<span class="input-clear-button"></span>
+												</div>
+												<script>
+													function ClickClaveConfirmacion() {
+														document.getElementById("errorclaveconfirmacion").innerHTML = "";
+													}
+												</script>
+											</div>
+										</li>
+										<center>
+											<span id="errorclaveconfirmacion" style="color: red; font-weight:bold; font-family: ubuntu;"></span>
+										</center>
+									</ul>
+								</div>
+								<div class="block-footer">
+									<center>
+										<div class="btn-container" style="margin-top: 40px;">
+											{{ formclave.submit(class_="btn", id="clavesubmit", value="GUARDAR", style="width: 100px; height: 40px; line-height: 40px; background-color: green; font-family: signika-regular; font-size: 18px; color: white; border-width: 0px;") }}
+										</div>
+										<div class="btn-container">
+											<a href="#" class="link popup-close btn" style="width: 100px; height: 40px; line-height: 40px; background-color: red; font-family: signika-regular; font-size: 18px; color: white; margin-top: 20px;">CANCELAR</a>
+										</div>
+									</center>
+								</div>
+								<script>
+									$(document).ready(function()
+									{
+										$("#claveform").submit(function(event)
+										{
+											event.preventDefault();
+											$.ajax({
+												dataType: "text",
+												type: "POST",
+												url: "{{ url_for('ClaveAjaxProcess') }}",
+												data: $('#claveform').serialize(), // serializes the form's elements.
+												success: function (data){
+													var resultados = JSON.parse(data);
+													for(var resultado in resultados){
+														if (resultados.hasOwnProperty(resultado)){
+															var valor=resultados[resultado];
+																if (resultado == "passwordactual"){
+																	document.getElementById("errorclaveactual").innerHTML=valor;	
+																}
+																else if (resultado == "password"){
+																	document.getElementById("errorclavenueva").innerHTML=valor;
+																}
+																else if (resultado == "password2"){
+																	document.getElementById("errorclaveconfirmacion").innerHTML=valor;
+																}
+														}
+													}
+													if (data == '"igual"')
+													{
+														document.getElementById("errorclaveactual").innerHTML= "";
+														document.getElementById("errorclavenueva").innerHTML= "Contraseña igual a la actual.";
+														document.getElementById("d-password").value= "";
+														document.getElementById("errorclaveconfirmacion").innerHTML= "";
+														document.getElementById("d-password2").value= "";
+													}
+													else if (data == '"no"')
+													{
+														document.getElementById("errorclaveactual").innerHTML= "Contraseña actual incorrecta.";
+														document.getElementById("d-passwordactual").value= "";
+														document.getElementById("errorclavenueva").innerHTML= "";
+														document.getElementById("errorclaveconfirmacion").innerHTML= "";
+													}
+													else if (data == '"si"'){
+														window.location.href = "{{ url_for('ClaveAjaxDone') }}";
+													}
+													//console.log(data)// display the returned data in the console.
+												}
+											});
+										});
+									});	
+								</script>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -106,6 +506,5 @@
 		<script type="text/javascript" src="../../static/lib/framework7/js/framework7.min.js"></script>
 		<!-- Path to your app js-->
 		<script type="text/javascript" src="../../static/js/my-app.js"></script>
-		<script src='../../static/js/jquery.min.js'></script>
 	</body>
 </html>

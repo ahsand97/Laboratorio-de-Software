@@ -39,8 +39,8 @@
 					</div>
 					<div class="toolbar no-shadow toolbar-bottom-md" style="width: 100%; background: #37C5C3; background-size:cover; padding: 3%;">
 						<div class="toolbar-inner" style="border-radius: 5px; border: 1px solid transparent; border-top: 1px solid transparent; border-bottom: 1px solid transparent;">
-							<a class="link external" href="{{ url_for('principal')  }}">
-								<i class="f7-icons" style="color: black;">home_fill</i>
+							<a class="link external" href="{{ url_for('transacciones')  }}">
+								<i class="f7-icons" style="color: black;">list_fill</i>
 							</a>
 							<a class="link external" href=" {{ url_for('AddCheque', id=cuenta.id) }}">
 								<i class="f7-icons" style="color: black;">add_round_fill</i>
@@ -79,7 +79,7 @@
 											</div>
 											<div class="item-title-row">
 												<div class="item-subtitle" style="font-family: ubuntu; font-weight: bold; color: black; font-size: 16px;">Valor COP:</div>
-												<div class="item-subtitle" style="font-family: ubuntu; color: black; font-size: 16px; margin: auto; margin-left: 5px;">${{ cheque.Valor_COP }}</div>
+												<div class="item-subtitle" style="font-family: ubuntu; color: black; font-size: 16px; margin: auto; margin-left: 5px;">$ {{ cheque.Valor_COP }}</div>
 											</div>
 											{% endif %}
 											<div class="item-title-row">
@@ -102,7 +102,7 @@
 						<div>
 							<center>
 									{% for message in get_flashed_messages() %}
-										<span style="color:red; font-weight:bold; font-family: ubuntu; font-size: 18px;">{{ message }}</span>
+										<span style="color:white; font-weight:bold; font-family: ubuntu; font-size: 18px;">{{ message }}</span>
 									{% endfor %}
 							</center>
 						</div>

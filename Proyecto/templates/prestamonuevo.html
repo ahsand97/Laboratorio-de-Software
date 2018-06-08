@@ -107,7 +107,7 @@
 											</div>
 											<div class="item-inner">
 												<div class="item-title" style="font-family: ubuntu;">Saldo COP:</div>
-												<div class="item-after" style="font-family: ubuntu;">${{ cuenta.Saldo_COP }}</div>
+												<div class="item-after" style="font-family: ubuntu;">$ {{ cuenta.Saldo_COP }}</div>
 											</div>
 										</div>
 									</li>
@@ -131,7 +131,7 @@
 										</div>
 										<div class="item-inner">
 											<div class="item-input-wrap">
-												{{ form.valor(type="number", min=0, step="0.01", placeholder="Valor del Préstamo", style="font-family: ubuntu;") }}
+												{{ form.valor(type="number", min="0", step="0.01", placeholder="Valor del Préstamo", style="font-family: ubuntu;") }}
 												<!--<input type="text" placeholder="Nombre" style="font-family: ubuntu;">-->
 												<span class="input-clear-button"></span>
 											</div>
@@ -148,7 +148,7 @@
 										</div>
 										<div class="item-inner">
 											<div class="item-input-wrap">
-												{{ form.cuotas(type="number", min=0, max=100, step="1", placeholder="Cantidad de Cuotas", style="font-family: ubuntu") }}
+												{{ form.cuotas(type="number", min="1", max="200", step="1", placeholder="Cantidad de Cuotas", style="font-family: ubuntu") }}
 												<!--<input type="text" placeholder="Fecha Límite" readonly="readonly" id="demo-calendar-date-format"/>-->
 												<span class="input-clear-button"></span>
 											</div>
@@ -165,7 +165,7 @@
 										</div>
 										<div class="item-inner">
 											<div class="item-input-wrap">
-												{{ form.TAE(type="number", min=0, max=100, step="0.01", placeholder="Tasa de interés (%)", style="font-family: ubuntu") }}
+												{{ form.TAE(type="number", min="0", max="100", step="0.01", placeholder="Tasa de interés (%)", style="font-family: ubuntu") }}
 												<!--<input type="text" placeholder="Fecha Límite" readonly="readonly" id="demo-calendar-date-format"/>-->
 												<span class="input-clear-button"></span>
 											</div>
@@ -225,8 +225,6 @@
 		<script type="text/javascript" src="../../../static/lib/framework7/js/framework7.min.js"></script>
 		<!-- Path to your app js-->
 		<script type="text/javascript" src="../../../static/js/my-app.js"></script>
-		
-		<script src='../../../static/js/jquery.min.js'></script>
 		
 	</body>
 </html>

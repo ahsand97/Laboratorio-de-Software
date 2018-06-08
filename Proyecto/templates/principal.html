@@ -28,14 +28,14 @@
 					<a href ="#" class " link icon-only open-panel">
 						<i  id="pres" class="f7-icons">personas_lleno</i>
 					</a>
-					{% if user.Usuario == "Estandar" %}
+					{% if user.Usuario == "a" %}
 					<div  class="block-footer" style="margin-bottom: 180px;">
 						<center>
 							<p id="user2" style="color:white; font-weight:bold; font-size: 30px; font-family: ubuntu; line-height:0.1;">Perfil Estándar</p>
 						</center>
 					</div>
 					<center>
-						<div class="btn-container" style="margin-bottom: 15px;">
+						<div class="btn-container" style="margin-bottom: 20px;">
 						  <a href="{{ url_for('registro')  }}" class="btn external" style="width: 150px; height: 40px; line-height: 40px; font-family: signika-regular; font-size: 18px; color: white;">REGISTRARSE</a>
 						</div>
 					</center>
@@ -45,7 +45,7 @@
 						</div>
 					</center>
 					<a class " link icon-only open-panel">
-						<i  id="pres" style="margin-bottom: -100px;" class="f7-icons ">mundo</i>
+						<i  id="pres" style="margin-bottom: -100px; margin-top: -20px;" class="f7-icons ">mundo</i>
 					</a>
 					<center>
 						<div class="btn-container" style="margin-top: 10px;">
@@ -54,6 +54,9 @@
 					</center>
 					{% else %}
 					<div  class="block-footer">
+						<center>
+							<p id="user2" style="color:white; font-weight:bold; font-size: 25px; font-family: ubuntu; margin-top: -60px; margin-bottom: 25px;">Datos de Usuario</p>
+						</center>
 						<p id="user1" style="color:white; font-weight:bold; font-size: 18px; font-family: ubuntu; line-height:0.1;">Nombre:</p>
 						<span style="color: blue; font-family: signika-regular; font-size: 18px;">{{ user.Nombre }}</span>
 						<br>
@@ -65,7 +68,7 @@
 					</div>
 					<center>
 						<div class="btn-container" style="margin-bottom: 15px;">
-							<a href="{{ url_for('EditProfile')  }}" class="btn external" style="width: 150px; height: 40px; line-height: 40px; background-color: transparent; font-family: signika-regular; font-size: 18px; color: white;">EDITAR PERFIL</a>
+							<a href="{{ url_for('EditProfile')  }}" class="btn external" style="width: 150px; height: 40px; line-height: 40px; background-color: black; font-family: signika-regular; font-size: 18px; color: white;">EDITAR PERFIL</a>
 						</div>
 					</center>
 					<center>
@@ -107,11 +110,11 @@
 					</div>
 					<div class="toolbar no-shadow toolbar-bottom-md" style="width: 100%; background: #37C5C3; background-size:cover; padding: 3%;">
 						<div class="toolbar-inner" style="border-radius: 5px; border: 1px solid transparent; border-top: 1px solid transparent; border-bottom: 1px solid transparent;">
-							<a class="link external" >
-								<i class="f7-icons" style="color: black;">home_fill</i>
-							</a>
-							<a class="link external">
+							<a class="link external" href="{{ url_for('transacciones') }}" >
 								<i class="f7-icons" style="color: black;">list_fill</i>
+							</a>
+							<a class="link external"href="{{ url_for('cuentas') }}">
+								<i class="f7-icons" style="color: black;">card_fill</i>
 							</a>
 							<a class="link external">
 								<i class="f7-icons" style="color: black;">money_dollar_fill</i>
@@ -169,6 +172,6 @@
 		<script type="text/javascript" src="../static/lib/framework7/js/framework7.min.js"></script>
 		<!-- Path to your app js-->
 		<script type="text/javascript" src="../static/js/my-app.js"></script>
-		<script src='../static/js/jquery.min.js'></script>
+
 	</body>
 </html>

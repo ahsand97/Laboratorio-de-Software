@@ -18,6 +18,9 @@
 		<link rel="stylesheet" type="text/css" href="../../../static/css/fuentespropias.css">
 		
 		<link rel="stylesheet" href="../../../static/css/botones.css">
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.rawgit.com/prashantchaudhary/ddslick/master/jquery.ddslick.min.js" ></script>
 
 	</head>
 	<body>
@@ -34,7 +37,7 @@
 							<div class="left">
 								<img src="../../../static/imagenes/logo.png" style="height: 60px; position: relative; max-width:100px; margin-top: 15px;"/>
 							</div>
-							<div class="title" style="font-family: himelody; border-radius: 5px; border: 1px solid transparent; font-size: 40px;">Nueva C. Cred.</div>
+							<div class="title" style="font-family: himelody; border-radius: 5px; border: 1px solid transparent; font-size: 40px;">Nueva Transferencia</div>
 						</div>
 					</div>
 					<div class="page-content" style="background-size:cover; width: 100%; margin-top: 8px;"><!--background: #3d3935-->
@@ -42,6 +45,9 @@
 						<form method="post">
 						{{ form.hidden_tag() }}
 							<div class="list inline-labels no-hairlines-md" style="margin: auto; width: 95%; background: white; padding: 3px 3px 3px 3px; margin-top: 30px; margin-bottom: -15px; border-radius: 10px;">
+								<center>
+									<p style="font-family: ubuntu; font-weight: bold; margin-top: 5px;">ORIGEN TRANSFERENCIA</p>
+								</center>
 								<ul>
 									<li>
 										<div class="item-content">
@@ -49,8 +55,8 @@
 												<i class="material-icons" style="margin-left: 8px;">format_align_justify</i>
 											</div>
 											<div class="item-inner">
-												<div class="item-title" style="font-family: ubuntu;">Nombre:</div>
-												<div class="item-after" style="font-family: ubuntu;">{{ cuenta.Nombre }}</div>
+												<div class="item-title" style="font-family: ubuntu;">Nombre Cuenta:</div>
+												<div class="item-after" style="font-family: ubuntu;">{{ cuentaorigen.Nombre|truncate(15, true) }}</div>
 											</div>
 										</div>
 									</li>
@@ -61,7 +67,11 @@
 											</div>
 											<div class="item-inner">
 												<div class="item-title" style="font-family: ubuntu;">Tipo de cuenta:</div>
-												<div class="item-after" style="font-family: ubuntu;">Crédito</div>
+												{% for tipocuenta in tipocuentas %}
+												{% if tipocuenta.id == cuentaorigen.id_Tipocuenta %}
+												<div class="item-after" style="font-family: ubuntu;">{{ tipocuenta.Nombre }}</div>
+												{% endif %}
+												{% endfor %}
 											</div>
 										</div>
 									</li>
@@ -72,7 +82,7 @@
 											</div>
 											<div class="item-inner">
 												<div class="item-title" style="font-family: ubuntu;">Moneda:</div>
-												<div class="item-after" style="font-family: ubuntu;">{{ moneda.Nombre }}</div>
+												<div class="item-after" style="font-family: ubuntu;">{{ moneda.Nombre|truncate(28, yes) }}</div>
 											</div>
 										</div>
 									</li>
@@ -84,7 +94,7 @@
 											</div>
 											<div class="item-inner">
 												<div class="item-title" style="font-family: ubuntu;">Saldo:</div>
-												<div class="item-after" style="font-family: ubuntu;">{{ cuenta.Saldo_COP }} COP</div>
+												<div class="item-after" style="font-family: ubuntu;">{{ cuentaorigen.Saldo_COP }} COP</div>
 											</div>
 										</div>
 									</li>
@@ -96,7 +106,7 @@
 											</div>
 											<div class="item-inner">
 												<div class="item-title" style="font-family: ubuntu;">Saldo:</div>
-												<div class="item-after" style="font-family: ubuntu;">{{ cuenta.Saldo }} {{ moneda.Simbolo }}</div>
+												<div class="item-after" style="font-family: ubuntu;">{{ cuentaorigen.Saldo }} {{ moneda.Simbolo }}</div>
 											</div>
 										</div>
 									</li>
@@ -107,12 +117,12 @@
 											</div>
 											<div class="item-inner">
 												<div class="item-title" style="font-family: ubuntu;">Saldo COP:</div>
-												<div class="item-after" style="font-family: ubuntu;">${{ cuenta.Saldo_COP }}</div>
+												<div class="item-after" style="font-family: ubuntu;">$ {{ cuentaorigen.Saldo_COP }}</div>
 											</div>
 										</div>
 									</li>
 									{% endif %}
-									{% if cuenta.Descripcion %}
+									{% if cuentaorigen.Descripcion %}
 									<li>
 										<div class="item-content">
 											<div class="item-media">
@@ -120,46 +130,148 @@
 											</div>
 											<div class="item-inner">
 												<div class="item-title" style="font-family: ubuntu;">Descripción:</div>
-												<div class="item-after" style="font-family: ubuntu;">{{ cuenta.Descripcion }}</div>
+												<div class="item-after" style="font-family: ubuntu;">{{ cuentaorigen.Descripcion }}</div>
 											</div>
 										</div>
 									</li>
 									{% endif %}
-									<li class="item-content item-input">
-										<div class="item-media">
-											<i class="material-icons" style="margin-bottom: 8px; margin-left: 8px;">attach_money</i>
-										</div>
-										<div class="item-inner">
-											<div class="item-input-wrap">
-												{{ form.limite(type="number", min=0, step="0.01", placeholder="Límite", style="font-family: ubuntu;") }}
-												<!--<input type="text" placeholder="Nombre" style="font-family: ubuntu;">-->
-												<span class="input-clear-button"></span>
-											</div>
-										</div>
-									</li>
-									{% for error in form.limite.errors %}
-									<center>
-										<span style="color: red; font-weight:bold; font-family: ubuntu;">{{ error }}</span>
-									</center>
-									{% endfor %}
-									<li class="item-content item-input">
-										<div class="item-media">
-											<i class="material-icons" style="margin-bottom: 8px; margin-left: 8px;">date_range</i>
-										</div>
-										<div class="item-inner">
-											<div class="item-input-wrap">
-												{{ form.fecha_pago(type="text", placeholder="Fecha Límite", readonly="readonly", id="demo-calendar-date-format", style="font-family: ubuntu") }}
-												<!--<input type="text" placeholder="Fecha Límite" readonly="readonly" id="demo-calendar-date-format"/>-->
-												<span class="input-clear-button"></span>
-											</div>
-										</div>
-									</li>
-									{% for error in form.fecha_pago.errors %}
-									<center>
-										<span style="color: red; font-weight:bold; font-family: ubuntu;">{{ error }}</span>
-									</center>
-									{% endfor %}
 								</ul>
+							</div>
+							<div class="list inline-labels no-hairlines-md" style="margin: auto; width: 95%; background: white; padding: 3px 3px 3px 3px; margin-top: 30px; margin-bottom: -15px; border-radius: 10px;">
+								<center>
+									<p style="font-family: ubuntu; font-weight: bold; margin-top: 5px;">DATOS TRANSACCIÓN</p>
+								</center>
+								<ul>
+									<li>
+										<div class="item-content">
+											<div class="item-media">
+												<i class="material-icons" style="margin-left: 8px;">credit_card</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu;">Moneda:</div>
+												<div class="item-after" style="font-family: ubuntu;">{{ moneda.Nombre|truncate(28, yes) }}</div>
+											</div>
+										</div>
+									</li>
+									{% if moneda.id == 67 %}
+									<li>
+										<div class="item-content">
+											<div class="item-media">
+												<i class="material-icons" style="margin-left: 8px;">attach_money</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu;">Valor:</div>
+												<div class="item-after" style="font-family: ubuntu;">{{ transferencia.Valor_COP }} COP</div>
+											</div>
+										</div>
+									</li>
+									{% else %}
+									<li>
+										<div class="item-content">
+											<div class="item-media">
+												<i class="material-icons" style="margin-left: 8px;">attach_money</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu;">Valor:</div>
+												<div class="item-after" style="font-family: ubuntu;">{{ transferencia.Valor }} {{ moneda.Simbolo }}</div>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="item-content">
+											<div class="item-media">
+												<i class="material-icons" style="margin-left: 8px;">attach_money</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu;">Valor COP:</div>
+												<div class="item-after" style="font-family: ubuntu;">$ {{ transferencia.Valor_COP }}</div>
+											</div>
+										</div>
+									</li>
+									{% endif %}
+									<li>
+										<div class="item-content">
+											<div class="item-media">
+												<i class="material-icons" style="margin-left: 8px;">date_range</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu;">Fecha:</div>
+												<div class="item-after" style="font-family: ubuntu;">{{ transferencia.Fecha }}</div>
+											</div>
+										</div>
+									</li>
+									{% if transferencia.Descripcion %}
+									<li>
+										<div class="item-content">
+											<div class="item-media">
+												<i class="material-icons" style="margin-left: 8px;">info_outline</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu;">Descripción:</div>
+												<div class="item-after" style="font-family: ubuntu;">{{ transferencia.Descripcion }}</div>
+											</div>
+										</div>
+									</li>
+									{% endif %}
+								</ul>
+							</div>	
+							<div class="list inline-labels no-hairlines-md">
+								<center>
+									<p style="font-family: ubuntu; font-weight: bold; margin-top: 5px;">SELECCIONA CUENTA DESTINO</p>
+								</center>
+								<div class="item-content item-input" style="padding:0; margin-top: 15px;">
+									<div class="item inner" style="margin: auto">
+										<style>
+											label.dd-selected-text {color: black; font-family: ubuntu;}
+											small.dd-selected-description.dd-desc.dd-selected-description-truncated {color: orange; font-family: ubuntu;}
+											
+											label.dd-option-text {font-family: ubuntu;}
+											small.dd-option-description.dd-desc {font-family: ubuntu; color: orange;}
+										</style>
+										<select id="myDropdown" name="myDropdown">
+											{% for cuenta in cuentas %}
+											{% if cuenta.id != cuentaorigen.id %}
+											{% if cuenta.id_Moneda == 67 %}
+											{% if cuenta.id_Tipocuenta == 1 %}
+											<option value="{{ cuenta.id }}" data-imagesrc="../../../static/imagenes/Nueva Carpeta/{{ cuenta.Logo }}.png" data-description="Tipo: Efectivo, Saldo= {{ cuenta.Saldo_COP }} COP">Nombre: {{ cuenta.Nombre }}</option>
+											{% elif cuenta.id_Tipocuenta == 2 %}
+											<option value="{{ cuenta.id }}" data-imagesrc="../../../static/imagenes/Nueva Carpeta/{{ cuenta.Logo }}.png" data-description="Tipo: Crédito, Saldo= {{ cuenta.Saldo_COP }} COP">Nombre: {{ cuenta.Nombre }}</option>
+											{% elif cuenta.id_Tipocuenta == 3 %}
+											<option value="{{ cuenta.id }}" data-imagesrc="../../../static/imagenes/Nueva Carpeta/{{ cuenta.Logo }}.png" data-description="Tipo: Cheque, Saldo= {{ cuenta.Saldo_COP }} COP">Nombre: {{ cuenta.Nombre }}</option>
+											{% elif cuenta.id_Tipocuenta == 4 %}
+											<option value="{{ cuenta.id }}" data-imagesrc="../../../static/imagenes/Nueva Carpeta/{{ cuenta.Logo }}.png" data-description="Tipo: Préstamo, Saldo= {{ cuenta.Saldo_COP }} COP">Nombre: 	{{ cuenta.Nombre }}</option>
+											{% endif %}
+											{% else %}
+											
+											{% for moneda in monedas %}
+											{% if moneda.id == cuenta.id_Moneda %}
+											{% if cuenta.id_Tipocuenta == 1 %}
+											<option value="{{ cuenta.id }}" data-imagesrc="../../../static/imagenes/Nueva Carpeta/{{ cuenta.Logo }}.png" data-description="Tipo: Efectivo, Saldo= {{ cuenta.Saldo }} {{ moneda.Simbolo }}">Nombre: {{ cuenta.Nombre }}</option>
+											{% elif cuenta.id_Tipocuenta == 2 %}
+											<option value="{{ cuenta.id }}" data-imagesrc="../../../static/imagenes/Nueva Carpeta/{{ cuenta.Logo }}.png" data-description="Tipo: Crédito, Saldo= {{ cuenta.Saldo }} {{ moneda.Simbolo }}">Nombre: {{ cuenta.Nombre }}</option>
+											{% elif cuenta.id_Tipocuenta == 3 %}
+											<option value="{{ cuenta.id }}" data-imagesrc="../../../static/imagenes/Nueva Carpeta/{{ cuenta.Logo }}.png" data-description="Tipo: Cheque, Saldo= {{ cuenta.Saldo }} {{ moneda.Simbolo }}">Nombre: {{ cuenta.Nombre }}</option>
+											{% elif cuenta.id_Tipocuenta == 4 %}
+											<option value="{{ cuenta.id }}" data-imagesrc="../../../static/imagenes/Nueva Carpeta/{{ cuenta.Logo }}.png" data-description="Tipo: Préstamo, Saldo= {{ cuenta.Saldo }} {{ moneda.Simbolo }}">Nombre: 	{{ cuenta.Nombre }}</option>
+											{% endif %}								
+											{% endif %}
+											{% endfor %}
+											{% endif %}
+											{% endif %}
+											{% endfor %}
+										</select>
+										<input type="hidden" id="oculto" name="oculto">
+										<script>
+											$('#myDropdown').ddslick({
+												//width: 250,
+												onSelected: function(selectedData){
+													//callback function: do something with selectedData;
+													$('#oculto').val(selectedData.selectedData.value);
+												}   
+											});
+										</script>
+									</div>
+								</div>
 							</div>
 							<div>
 								<center>
@@ -170,11 +282,11 @@
 							</div>
 							<div class="block-footer">
 								<center>
-									<div class="btn-container" style="margin-top: 80px;">
-										{{ form.submit(class_="btn external", value="CREAR", style="width: 100px; height: 40px; line-height: 40px; background-color: green; font-family: signika-regular; font-size: 18px; color: white; border-width: 0px;") }}
+									<div class="btn-container" style="margin-top: 40px;">
+										{{ form.submit(class_="btn external", value="AÑADIR", style="width: 100px; height: 40px; line-height: 40px; background-color: green; font-family: signika-regular; font-size: 18px; color: white; border-width: 0px;") }}
 									</div>
 									<div class="btn-container">
-										<a href="{{ url_for('cuentas')}}" class="btn external" style="width: 100px; height: 40px; line-height: 40px; background-color: red; font-family: signika-regular; font-size: 18px; color: white; margin-top: 20px;">CANCELAR</a>
+										<a href="{{ url_for('transacciones')}}" class="btn external" style="width: 100px; height: 40px; line-height: 40px; background-color: red; font-family: signika-regular; font-size: 18px; color: white; margin-top: 20px;">CANCELAR</a>
 									</div>
 								</center>
 							</div>
@@ -188,8 +300,6 @@
 		<script type="text/javascript" src="../../../static/lib/framework7/js/framework7.min.js"></script>
 		<!-- Path to your app js-->
 		<script type="text/javascript" src="../../../static/js/my-app.js"></script>
-		
-		<script src='../../../static/js/jquery.min.js'></script>
 		
 	</body>
 </html>

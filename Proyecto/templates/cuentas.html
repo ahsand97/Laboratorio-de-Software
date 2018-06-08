@@ -34,9 +34,9 @@
 						</div>
 						<div class="title" style="font-family: himelody; border-radius: 5px; border: 1px solid transparent; font-size: 40px;">Cuentas</div>
 						<div class="right">
-							<!--<a class="link sortable-toggle" data-sortable=".sortable">
+							<a class="link sortable-toggle" data-sortable=".sortable">
 								<i class="f7-icons ">keyboard_fill</i>
-							</a>-->
+							</a>
 						</div>
 					</div>
 				</div>
@@ -60,25 +60,7 @@
 							{% if cuenta %}
 							<li style="margin: auto; width: 95%; background: white; padding: 3px 3px 3px 3px; margin-bottom: 10px; border-radius: 10px;">
 								<div class="item-content">
-									{% if cuenta.Logo == 1 %}
-									<div class="item-media" style="margin-top: 10px;"><img src="../static/imagenes/Nueva Carpeta/1g.png"/></div>
-									{% elif cuenta.Logo == 2 %}
-									<div class="item-media" style="margin-top: 10px;"><img src="../static/imagenes/Nueva Carpeta/2g.png"/></div>
-									{% elif cuenta.Logo == 3 %}
-									<div class="item-media" style="margin-top: 10px;"><img src="../static/imagenes/Nueva Carpeta/3g.png"/></div>
-									{% elif cuenta.Logo == 4 %}
-									<div class="item-media" style="margin-top: 10px;"><img src="../static/imagenes/Nueva Carpeta/4g.png"/></div>
-									{% elif cuenta.Logo == 5 %}
-									<div class="item-media" style="margin-top: 10px;"><img src="../static/imagenes/Nueva Carpeta/5g.png"/></div>
-									{% elif cuenta.Logo == 6 %}
-									<div class="item-media" style="margin-top: 10px;"><img src="../static/imagenes/Nueva Carpeta/6g.png"/></div>
-									{% elif cuenta.Logo == 7 %}
-									<div class="item-media" style="margin-top: 10px;"><img src="../static/imagenes/Nueva Carpeta/7g.png"/></div>
-									{% elif cuenta.Logo == 8 %}
-									<div class="item-media" style="margin-top: 10px;"><img src="../static/imagenes/Nueva Carpeta/8g.png"/></div>
-									{% elif cuenta.Logo == 9 %}
-									<div class="item-media" style="margin-top: 10px;"><img src="../static/imagenes/Nueva Carpeta/9g.png"/></div>
-									{% endif %}
+									<div class="item-media" style="margin-top: 10px;"><img src="../static/imagenes/Nueva Carpeta/{{ cuenta.Logo }}g.png"/></div>
 									<div class="item-inner">
 										<div class="item-title-row">
 											<div class="item-title" style="font-family: ubuntu; font-weight: bold; color: green; font-size: 18px; margin: auto; padding-right: 30px;">{{ cuenta.Nombre }}</div>
@@ -142,7 +124,7 @@
 											{% endfor %}
 											<div class="item-title-row">
 												<div class="item-subtitle" style="font-family: ubuntu; font-weight: bold; color: black; font-size: 16px;">Saldo COP:</div>
-												<div class="item-subtitle" style="font-family: ubuntu; color: black; font-size: 16px; margin:auto; margin-left: 5px;">${{ cuenta.Saldo_COP }}</div>
+												<div class="item-subtitle" style="font-family: ubuntu; color: black; font-size: 16px; margin:auto; margin-left: 5px;">$ {{ cuenta.Saldo_COP }}</div>
 											</div>
 										{% endif %}
 									</div>

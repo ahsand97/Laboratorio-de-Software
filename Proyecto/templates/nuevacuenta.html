@@ -21,8 +21,10 @@
 		
 		<link rel="stylesheet" href="../../static/css/botones.css">
 		
-		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script type="text/javascript" src="https://cdn.rawgit.com/prashantchaudhary/ddslick/master/jquery.ddslick.min.js" ></script>
+		
+	
 	</head>
 	<body>   
 		<div id="app">
@@ -41,9 +43,8 @@
 						</div>
 					</div>
 					<div class="page-content" style="background-size:cover; width: 100%; margin-top: 8px;"><!--background: #3d3935-->
-					{% block content %}
-						<form method="POST">
-						{{ form.hidden_tag() }}
+						<form id="cuentaform" method="POST">
+						{{ CuentaForm.hidden_tag() }}
 							<div class="list inline-labels no-hairlines-md" style="margin: auto; width: 95%; background: white; padding: 3px 3px 3px 3px; margin-top: 30px; margin-bottom: -15px; border-radius: 10px;">
 								<ul>
 									<li class="item-content item-input">
@@ -52,17 +53,21 @@
 										</div>
 										<div class="item-inner">
 											<div class="item-input-wrap">
-												{{ form.nombre(type="text", maxlength="20", placeholder="Nombre", style="font-family: ubuntu;") }}
+												{{ CuentaForm.nombre(type="text", autocomplete='given-name', onfocus="ClickNombre()", onclick="ClickNombre()", maxlength="30", minlength="1", placeholder="Nombre", style="font-family: ubuntu;") }}
 												<!--<input type="text" placeholder="Nombre" style="font-family: ubuntu;">-->
 												<span class="input-clear-button"></span>
+											<script>
+													function ClickNombre() {
+														document.getElementById("errornombre").innerHTML = "";
+														document.getElementById("errorgeneral").innerHTML= "";
+													}
+											</script>
 											</div>
 										</div>
 									</li>
-									{% for error in form.nombre.errors %}
 									<center>
-										<span style="color: red; font-weight:bold; font-family: ubuntu;">{{ error }}</span>
+										<span id="errornombre" style="color: red; font-weight:bold; font-family: ubuntu;">{{ error }}</span>
 									</center>
-									{% endfor %}
 									<li class="item-content item-input">
 										<div class="item-media" style="margin-bottom: 10px;">
 											<i class="material-icons" style="margin-bottom: 8px; margin-left: 8px;">format_list_numbered</i>
@@ -70,10 +75,15 @@
 										<div class="item-inner">
 											<div class="item-input-wrap">
 												<a class="item-link smart-select smart-select-init " style="font-family: ubuntu;">
-													{{ form.categoria }}
+													<style>
+														div.title {font-family: himelody; font-size: 40px;}
+														div.navbar-inner.sliding {background-color: #37C5C3;}
+														div.item-title {font-family: ubuntu;}
+													</style>
+													{{ CuentaForm.categoria }}
 													<div class="item-content">
 														<div class="item-inner">
-															<div class="item-title" style="font-family: ubuntu; font-weight: bold;">Categoría</div>
+															<div class="item-title" style="font-family: ubuntu; font-weight: bold;">Categoria</div>
 														</div>
 													</div>
 												</a>
@@ -87,7 +97,7 @@
 										<div class="item-inner">
 											<div class="item-input-wrap">
 												<a class="item-link smart-select smart-select-init " style="font-family: ubuntu;">
-													{{ form.moneda }}
+													{{ CuentaForm.moneda }}
 													<div class="item-content">
 														<div class="item-inner">
 															<div class="item-title" style="font-family: ubuntu; font-weight: bold;">Moneda</div>
@@ -103,23 +113,27 @@
 										</div>
 										<div class="item-inner">
 											<div class="item-input-wrap">
-												{{ form.saldo(type= "number", min=0, step="0.01", placeholder="Saldo", style="font-family: ubuntu;") }}
+												{{ CuentaForm.saldo(type= "number", onclick="ClickSaldo()", onfocus="ClickSaldo", min="0.01", step="0.01", placeholder="Saldo", style="font-family: ubuntu;") }}
 												<!--<input type="number" placeholder="Saldo" style="font-family: ubuntu;">-->
+											<script>
+												function ClickSaldo() {
+													document.getElementById("errorsaldo").innerHTML = "";
+													document.getElementById("errorgeneral").innerHTML= "";
+												}
+											</script>
 											</div>
 										</div>
 									</li>
-									{% for error in form.saldo.errors %}
 									<center>
-										<span style="color: red; font-weight:bold; font-family: ubuntu;">{{ error }}</span>
+										<span id="errorsaldo" style="color: red; font-weight:bold; font-family: ubuntu;">{{ error }}</span>
 									</center>
-									{% endfor %}
 									<li class="item-content item-input">
 										<div class="item-media">
 											<i class="material-icons" style="margin-bottom: 8px; margin-left: 8px;">info_outline</i>
 										</div>
 										<div class="item-inner">
 											<div class="item-input-wrap">
-												{{ form.descripcion(type= "text", placeholder="Descripción", style="font-family: ubuntu;") }}
+												{{ CuentaForm.descripcion(type= "text", maxlength="100", placeholder="Descripción", style="font-family: ubuntu;") }}
 												<span class="input-clear-button"></span>
 											</div>
 										</div>
@@ -158,12 +172,13 @@
 									{% for message in get_flashed_messages() %}
 									<span style="color:red; font-weight:bold; font-family: ubuntu; font-size: 18px;">{{ message }}</span>
 									{% endfor %}
+									<span id="errorgeneral" style="color:red; font-weight:bold; font-family: ubuntu; font-size: 18px;"></span>
 								</center>
 							</div>
 							<div class="block-footer">
 								<center>
 									<div class="btn-container" style="margin-top: 40px;">
-										{{ form.submit(class_="btn external", style="width: 100px; height: 40px; line-height: 40px; background-color: green; font-family: signika-regular; font-size: 18px; color: white; border-width: 0px;") }}
+										{{ CuentaForm.submit(class_="btn external", style="width: 100px; height: 40px; line-height: 40px; background-color: green; font-family: signika-regular; font-size: 18px; color: white; border-width: 0px;") }}
 									</div>
 									<div class="btn-container">
 										<a href="{{ url_for('cuentas') }}" class="btn external" style="width: 100px; height: 40px; line-height: 40px; background-color: red; font-family: signika-regular; font-size: 18px; color: white; margin-top: 20px;">CANCELAR</a>
@@ -171,16 +186,517 @@
 								</center>
 							</div>
 						</form>
-					{% endblock %}
+						<script>
+							$(document).ready(function()
+							{
+								$("#cuentaform").submit(function(event)
+								{
+									event.preventDefault();
+									$.ajax({
+										dataType: "text",
+										type: "POST",
+										url: "{{ url_for('AddCuentaAjaxProcess') }}",
+										data: $('#cuentaform').serialize(), // serializes the form's elements.
+										success: function (data){
+											var resultado=JSON.parse(data);
+											if (resultado == "llenarambos")
+											{
+												document.getElementById("errorsaldo").innerHTML= "Llena el campo.";
+												document.getElementById("errornombre").innerHTML= "Llena el campo.";
+												document.getElementById("errorgeneral").innerHTML= "";
+											}
+											else if (resultado == "llenarsaldo")
+											{
+												document.getElementById("errorsaldo").innerHTML= "Llena el campo.";
+												document.getElementById("errornombre").innerHTML= "";
+												document.getElementById("errorgeneral").innerHTML= "";
+											}
+											else if (resultado == "llenarnombre")
+											{
+												document.getElementById("errorsaldo").innerHTML= "";
+												document.getElementById("errornombre").innerHTML= "Llena el campo.";
+												document.getElementById("errorgeneral").innerHTML= "";
+											}
+											else if (resultado == "yaexiste")
+											{
+												document.getElementById("errorsaldo").innerHTML= "";
+												document.getElementById("errornombre").innerHTML= "";
+												document.getElementById("errorgeneral").innerHTML= "Ya tienes una cuenta con ese nombre.";
+												document.getElementById("a-nombre").value= "";
+											}
+											else if (resultado == "valido"){
+												window.location.href = "{{ url_for('AddCuentaAjaxDone') }}";
+											}
+											else if (resultado["Tipo"] == "credito")
+											{
+												app.popup.open('.popupnombre');
+												document.getElementById("errorsaldo").innerHTML= "";
+												document.getElementById("errornombre").innerHTML= "";
+												document.getElementById("errorgeneral").innerHTML= "";
+												document.getElementById("nombreservidor").innerHTML= resultado.Datos.Nombre;
+												document.getElementById("monedaservidor").innerHTML= resultado.Moneda;
+												if (resultado.Datos.id_Moneda == 67 ){
+													document.getElementById("saldocopservidor").innerHTML= resultado.Datos.Saldo_COP+' COP';
+													$("#eliminarsaldos").hide();
+												}
+												else{
+													$("#eliminarsaldos").show();
+													document.getElementById("saldocopservidor").innerHTML= resultado.Datos.Saldo+' '+resultado.Simbolo;
+													document.getElementById("saldoservidor").innerHTML= resultado.Datos.Saldo_COP+' COP';
+												}
+												if (resultado.Datos.Descripcion.length == 0){
+													$("#eliminardescripcion").hide();
+												}
+												else{
+													$("#eliminardescripcion").show();
+													document.getElementById("descripcionservidor").innerHTML= resultado.Datos.Descripcion;
+												}	
+											}
+											else if (resultado.Tipo == "prestamo"){
+												app.popup.open('.popupprestamo');
+												document.getElementById("nombreservidorprestamo").innerHTML= resultado.Datos.Nombre;
+												document.getElementById("monedaservidorprestamo").innerHTML= resultado.Datos.Moneda.Nombre;
+												//console.log(resultado.Datos)
+												if(resultado.Datos.Moneda.id == "67"){
+													//console.log('si')
+													document.getElementById("saldoservidorprestamo").innerHTML=resultado.Datos.Saldo_COP+ ' COP';
+													$("#ocultarsaldocoprestamo").hide();
+												}
+												else{
+													//console.log('si')
+													document.getElementById("saldoservidorprestamo").innerHTML=resultado.Datos.Saldo+' '+resultado.Datos.Moneda.Simbolo;
+													$("#ocultarsaldocoprestamo").show();
+													document.getElementById("servidorsaldocop").innerHTML=resultado.Datos.Saldo_COP+' COP';
+												}
+												if(resultado.Datos.Descripcion){
+													$("#ocultardescripcion").show();
+													document.getElementById("descripcionservidorprestamo").innerHTML=resultado.Datos.Descripcion;
+												}
+												else{
+													$("#ocultardescripcion").hide();
+												}
+											}
+											//console.log(resultado)
+											//console.log(reyna["Tipo"])// display the returned data in the console.
+										}
+									});
+								});
+							});	
+						</script>
 					</div>
 				</div>       
-			</div>
+				<div class="popup popupnombre">
+					<div class="navbar" style="background: #37C5C3;">
+						<div class="navbar-inner sliding">
+							<div class="title" style="font-family: himelody; border-radius: 5px; border: 1px solid transparent; font-size: 40px; margin:auto;">Nueva Cuenta Credito</div>
+						</div>
+					</div>
+					<div class="page-content" style="background-size:cover; width: 100%; margin-top: -20px; margin-bottom: 40px;"><!--background: #3d3935-->
+						<form id="creditoform" method="post">
+							{{ CreditoForm.hidden_tag() }}
+							<div class="list inline-labels no-hairlines-md" style="margin: auto; width: 95%; background: white; padding: 3px 3px 3px 3px; margin-top: -30px; border-radius: 10px;">
+								<ul id="creditolista">
+									<li>
+										<div class="item-content">
+											<div class="item-media">
+												<i class="material-icons" style="margin-left: 8px;">format_align_justify</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu;">Nombre:</div>
+												<div id="nombreservidor" class="item-after" style="font-family: ubuntu;"></div>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="item-content">
+											<div class="item-media">
+												<i class="material-icons" style="margin-left: 8px;">format_list_numbered</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu;">Tipo de cuenta:</div>
+												<div class="item-after" style="font-family: ubuntu;">Crédito</div>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="item-content">
+											<div class="item-media">
+												<i class="material-icons" style="margin-left: 8px;">credit_card</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu;">Moneda:</div>
+												<div id="monedaservidor" class="item-after" style="font-family: ubuntu;"></div>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="item-content">
+											<div class="item-media">
+												<i class="material-icons" style="margin-left: 8px;">attach_money</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu;">Saldo:</div>
+												<div id="saldocopservidor" class="item-after" style="font-family: ubuntu;"></div>
+											</div>
+										</div>
+									</li>
+									<li id="eliminarsaldos">
+										<div class="item-content">
+											<div class="item-media">
+												<i class="material-icons" style="margin-left: 8px;">attach_money</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu;">Saldo COP:</div>
+												<div id="saldoservidor" class="item-after" style="font-family: ubuntu;"></div>
+											</div>
+										</div>
+									</li>
+									<li id="eliminardescripcion">
+										<div class="item-content">
+											<div class="item-media">
+												<i class="material-icons" style="margin-left: 8px;">info_outline</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu;">Descripción:</div>
+												<div id="descripcionservidor" class="item-after" style="font-family: ubuntu;"></div>
+											</div>
+										</div>
+									</li>
+									<li class="item-content item-input">
+										<div class="item-media">
+											<i class="material-icons" style="margin-bottom: 8px; margin-left: 8px;">attach_money</i>
+										</div>
+										<div class="item-inner">
+											<div class="item-input-wrap">
+												{{ CreditoForm.limite(type="number", onclick="ClickLimite()", onfocus="ClickLimite()", min="0", step="0.01", placeholder="Límite", style="font-family: ubuntu;") }}
+												<!--<input type="text" placeholder="Nombre" style="font-family: ubuntu;">-->
+												<span class="input-clear-button"></span>
+											</div>
+											<script>
+												function ClickLimite() {
+													document.getElementById("limiteerror").innerHTML = "";
+													document.getElementById("errorgeneralcredito").innerHTML = "";
+													//document.getElementById("errorgeneral").innerHTML= "";
+												}
+											</script>
+										</div>
+									</li>
+									<center>
+										<span id="limiteerror" style="color: red; font-weight:bold; font-family: ubuntu;"></span>
+									</center>
+									<li class="item-content item-input">
+										<div class="item-media">
+											<i class="material-icons" style="margin-bottom: 8px; margin-left: 8px;">date_range</i>
+										</div>		
+										<div class="item-inner">
+											<div class="item-input-wrap">
+												{{ CreditoForm.fecha_pago(type="text", placeholder="Fecha Límite", readonly="readonly", id="demo-calendar-date-format", style="font-family: ubuntu") }}
+												<!--<input type="text" placeholder="Fecha Límite" readonly="readonly" id="demo-calendar-date-format"/>-->
+												<span class="input-clear-button"></span>
+											</div>
+										</div>
+									</li>
+									<center>
+										<span id="errorfecha" style="color: red; font-weight:bold; font-family: ubuntu;"></span>
+									</center>
+								</ul>
+							</div>
+							<div>
+								<center>
+									
+									<span id="errorgeneralcredito" style="color:red; font-weight:bold; font-family: ubuntu; font-size: 18px; margin-top: 20px; margin-bottom:-20px;"></span>
+
+								</center>
+							</div>
+							<div class="block-footer">
+								<center>
+									<div class="btn-container" style="margin-top: 40px;">
+										{{ CreditoForm.submit(class_="btn external", value="CREAR", style="width: 100px; height: 40px; line-height: 40px; background-color: green; font-family: signika-regular; font-size: 18px; color: white; border-width: 0px;") }}
+									</div>
+									<div class="btn-container" style="margin-bottom: 40px;">
+										<a href="#" class="link popup-close btn" style="width: 100px; height: 40px; line-height: 40px; background-color: red; font-family: signika-regular; font-size: 18px; color: white; margin-top: 20px;">CANCELAR</a>
+									</div>
+								</center>
+							</div>
+						</form>
+						<script>
+							$(document).ready(function()
+							{
+								$("#creditoform").submit(function(event)
+								{
+									event.preventDefault();
+									$.ajax({
+										dataType: "text",
+										type: "POST",
+										url: "{{ url_for('CreditoAjaxProcess') }}",
+										data: $('#creditoform').serialize(), // serializes the form's elements.
+										success: function (data){
+											var resultado=JSON.parse(data)
+											if (resultado.fecha_pago){
+												document.getElementById("errorfecha").innerHTML = resultado.fecha_pago;
+											}
+											else{
+												document.getElementById("errorfecha").innerHTML = "";
+											}
+											if (resultado.limite){
+												document.getElementById("limiteerror").innerHTML = resultado.limite;
+											}
+											else{
+												document.getElementById("limiteerror").innerHTML = "";
+											}
+											if(resultado == "si"){
+												window.location.href = "{{ url_for('CreditoAjaxDone') }}";
+											}
+											else if(resultado == "no"){
+												document.getElementById("limiteerror").innerHTML = "";
+												document.getElementById("errorgeneralcredito").innerHTML = "Valor límite menor al saldo.";
+												//document.getElementById("b-limite").value = "";
+											}
+											
+											//console.log(data)// display the returned data in the console.
+										}
+									});
+								});
+							});	
+						</script>
+					</div>
+				</div>
+				<div class="popup popupprestamo">
+					<div class="navbar" style="background: #37C5C3;">
+						<div class="navbar-inner sliding">
+							<div class="title" style="font-family: himelody; border-radius: 5px; border: 1px solid transparent; font-size: 40px; margin:auto;">Nueva Cuenta Prestamo</div>
+						</div>
+					</div>
+					<div class="page-content" style="background-size:cover; width: 100%; margin-top: -20px; margin-bottom: 40px;"><!--background: #3d3935-->
+						<form id="prestamoform" method="post">
+							{{ PrestamoForm.hidden_tag() }}
+							<div class="list inline-labels no-hairlines-md" style="margin: auto; width: 95%; background: white; padding: 3px 3px 3px 3px; margin-top: -30px; border-radius: 10px;">
+								<ul>
+									<li>
+										<div class="item-content">
+											<div class="item-media">
+												<i class="material-icons" style="margin-left: 8px;">format_align_justify</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu;">Nombre:</div>
+												<div id="nombreservidorprestamo" class="item-after" style="font-family: ubuntu;"></div>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="item-content">
+											<div class="item-media">
+												<i class="material-icons" style="margin-left: 8px;">format_list_numbered</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu;">Tipo de cuenta:</div>
+												<div class="item-after" style="font-family: ubuntu;">Préstamo</div>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="item-content">
+											<div class="item-media">
+												<i class="material-icons" style="margin-left: 8px;">credit_card</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu;">Moneda:</div>
+												<div id="monedaservidorprestamo" class="item-after" style="font-family: ubuntu;"></div>
+											</div>
+										</div>
+									</li>
+									<li>
+										<div class="item-content">
+											<div class="item-media">
+												<i class="material-icons" style="margin-left: 8px;">attach_money</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu;">Saldo:</div>
+												<div id="saldoservidorprestamo" class="item-after" style="font-family: ubuntu;"></div>
+											</div>
+										</div>
+									</li>
+									<li id="ocultarsaldocoprestamo">
+										<div class="item-content">
+											<div class="item-media">
+												<i class="material-icons" style="margin-left: 8px;">attach_money</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu;">Saldo COP:</div>
+												<div id="servidorsaldocop" class="item-after" style="font-family: ubuntu;"></div>
+											</div>
+										</div>
+									</li>
+									<li id="ocultardescripcion">
+										<div class="item-content">
+											<div class="item-media">
+												<i class="material-icons" style="margin-left: 8px;">info_outline</i>
+											</div>
+											<div class="item-inner">
+												<div class="item-title" style="font-family: ubuntu;">Descripción:</div>
+												<div id="descripcionservidorprestamo" class="item-after" style="font-family: ubuntu;"></div>
+											</div>
+										</div>
+									</li>
+									<li class="item-content item-input">
+										<div class="item-media">
+											<i class="material-icons" style="margin-bottom: 8px; margin-left: 8px;">attach_money</i>
+										</div>
+										<div class="item-inner">
+											<div class="item-input-wrap">
+												{{ PrestamoForm.valor(type="number", onclick="ClickValorPrestamo()", onfocus="ClickValorPrestamo()", min="0.01", step="0.01", placeholder="Valor del Préstamo", style="font-family: ubuntu;") }}
+												<!--<input type="text" placeholder="Nombre" style="font-family: ubuntu;">-->
+												<span class="input-clear-button"></span>
+											</div>
+										<script>
+											function ClickValorPrestamo() {
+												document.getElementById("errorvalorprestamo").innerHTML = "";
+												document.getElementById("errorgeneralprestamo").innerHTML = "";
+											}
+										</script>
+										</div>
+									</li>
+									<center>
+										<span id="errorvalorprestamo"style="color: red; font-weight:bold; font-family: ubuntu;"></span>
+									</center>
+									<li class="item-content item-input">
+										<div class="item-media">
+											<i class="material-icons" style="margin-bottom: 8px; margin-left: 8px;">date_range</i>
+										</div>
+										<div class="item-inner">
+											<div class="item-input-wrap">
+												{{ PrestamoForm.cuotas(type="number", onclick="ClickCuotasPrestamo()", onfocus="ClickCuotasPrestamo()", min="1", max="200", step="1", placeholder="Cantidad de Cuotas", style="font-family: ubuntu") }}
+												<!--<input type="text" placeholder="Fecha Límite" readonly="readonly" id="demo-calendar-date-format"/>-->
+												<span class="input-clear-button"></span>
+											</div>
+										</div>
+										<script>
+											function ClickCuotasPrestamo() {
+												document.getElementById("errorcuotas").innerHTML = "";
+												document.getElementById("errorgeneralprestamo").innerHTML = "";
+											}
+										</script>
+									</li>
+									<center>
+										<span id="errorcuotas" style="color: red; font-weight:bold; font-family: ubuntu;"></span>
+									</center>
+									<li class="item-content item-input">
+										<div class="item-media">
+											<i class="material-icons" style="margin-bottom: 8px; margin-left: 8px;">account_balance_wallet</i>
+										</div>
+										<div class="item-inner">
+											<div class="item-input-wrap">
+												{{ PrestamoForm.TAE(type="number", onclick="ClickTAEPrestamo()", onfocus="ClickTAEPrestamo()", min="0.01", max="100", step="0.01", placeholder="Tasa de interés (%)", style="font-family: ubuntu") }}
+												<!--<input type="text" placeholder="Fecha Límite" readonly="readonly" id="demo-calendar-date-format"/>-->
+												<span class="input-clear-button"></span>
+											</div>
+										</div>
+										<script>
+											function ClickTAEPrestamo() {
+												document.getElementById("errorTAE").innerHTML = "";
+												document.getElementById("errorgeneralprestamo").innerHTML = "";
+											}
+										</script>
+									</li>
+									<center>
+										<span id="errorTAE" style="color: red; font-weight:bold; font-family: ubuntu;"></span>
+									</center>
+									<center>
+										<span style="color: black; font-weight:bold; font-family: ubuntu; margin top: 5px;">PLAN DE PAGO</span>
+									</center>
+									<li class="item-content item-input">
+										<div class="item-media">
+											<i class="material-icons" style="margin-bottom: 8px; margin-left: 8px;">date_range</i>
+										</div>
+										<div class="item-inner">
+											<div class="item-input-wrap">
+												{{ PrestamoForm.fecha_pago(type="date", onclick="ClickDatePrestamo()", min="2016-01-01", max="2018-12-31",onfocus="ClickDatePrestamo()", placeholder="Fecha de Pago(Mensual)", style="font-family: ubuntu") }}
+											</div>
+										</div>
+										<script>
+											function ClickDatePrestamo() {
+												document.getElementById("fechapagoprestamo").innerHTML = "";
+												document.getElementById("errorgeneralprestamo").innerHTML = "";
+											}
+										</script>
+									</li>
+									<center>
+										<span id="fechapagoprestamo"style="color: red; font-weight:bold; font-family: ubuntu;">{{ error }}</span>
+									</center>
+								</ul>
+							</div>
+							<div>
+								<center>
+									
+									<span id="errorgeneralprestamo" style="color:red; font-weight:bold; font-family: ubuntu; font-size: 18px; margin-top: 20px; margin-bottom:-20px;"></span>
+
+								</center>
+							</div>
+							<div class="block-footer">
+								<center>
+									<div class="btn-container" style="margin-top: 40px;">
+										{{ PrestamoForm.submit(class_="btn external", value="CREAR", style="width: 100px; height: 40px; line-height: 40px; background-color: green; font-family: signika-regular; font-size: 18px; color: white; border-width: 0px;") }}
+									</div>
+									<div class="btn-container" style="margin-bottom: 40px;">
+										<a href="#" class="link popup-close btn" style="width: 100px; height: 40px; line-height: 40px; background-color: red; font-family: signika-regular; font-size: 18px; color: white; margin-top: 20px;">CANCELAR</a>
+									</div>
+								</center>
+							</div>
+						</form>
+						<script>
+							$(document).ready(function()
+							{
+								$("#prestamoform").submit(function(event)
+								{
+									event.preventDefault();
+									$.ajax({
+										dataType: "text",
+										type: "POST",
+										url: "{{ url_for('PrestamoAjaxProcess') }}",
+										data: $('#prestamoform').serialize(), // serializes the form's elements.
+										success: function (data){
+											var resultado=JSON.parse(data)
+											if (resultado.valor){
+												document.getElementById("errorvalorprestamo").innerHTML = resultado.valor;
+											}
+											else{
+												document.getElementById("errorvalorprestamo").innerHTML = "";
+											}
+											if (resultado.cuotas){
+												document.getElementById("errorcuotas").innerHTML = resultado.cuotas;
+											}
+											else{
+												document.getElementById("errorcuotas").innerHTML = "";
+											}
+											if (resultado.TAE){
+												document.getElementById("errorTAE").innerHTML = resultado.TAE;
+											}
+											else{
+												document.getElementById("errorTAE").innerHTML = "";
+											}
+											if (resultado.fecha_pago){
+												document.getElementById("fechapagoprestamo").innerHTML = resultado.fecha_pago;
+											}
+											else{
+												document.getElementById("fechapagoprestamo").innerHTML = "";
+											}
+											if (resultado == "si"){
+												window.location.href = "{{ url_for('PrestamoAjaxDone') }}";
+											}
+											//console.log(data)
+										}
+									});
+								});
+							});	
+						</script>
+					</div>
+				</div>
 		</div>
 		<!-- Path to Framework7 Library JS-->
 		<script type="text/javascript" src="../../static/lib/framework7/js/framework7.min.js"></script>
 		<!-- Path to your app js-->
 		<script type="text/javascript" src="../../static/js/my-app.js"></script>
-		
-		<script src='../../static/js/jquery.min.js'></script>
+					
+
 	</body>
 </html>

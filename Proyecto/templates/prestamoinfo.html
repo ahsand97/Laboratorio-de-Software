@@ -38,7 +38,7 @@
 							<a class="link external" href="{{ url_for('principal')  }}">
 								<i class="f7-icons" style="color: black;">home_fill</i>
 							</a>
-							<a class="link external" href="{{ url_for('trabajando') }}">
+							<a class="link external" href="{{ url_for('transaccionescuenta', id=cuenta.id) }}">
 								<i class="f7-icons" style="color: black;">list_fill</i>
 							</a>
 							<a class="link external" href=" {{ url_for('cuentas') }}">
@@ -84,7 +84,7 @@
 								<li>
 									<div class="item-title-row">
 										<div class="item-title" style="font-family: ubuntu; font-weight: bold; color: black; font-size: 22px;">Saldo COP:</div>
-										<div class="item-after" style="font-family: ubuntu; font-size: 16px; color: black; margin-top: 2px;">${{ cuenta.Saldo_COP }}</div>
+										<div class="item-after" style="font-family: ubuntu; font-size: 16px; color: black; margin-top: 2px;">$ {{ cuenta.Saldo_COP }}</div>
 									</div>
 								</li>
 								{% endif %}
@@ -113,7 +113,7 @@
 								<li>
 									<div class="item-title-row">
 										<div class="item-title" style="font-family: ubuntu; font-weight: bold; color: black; font-size: 22px;">V. Prés. COP:</div>
-										<div class="item-after" style="font-family: ubuntu; font-size: 16px; color: black; margin-top: 2px;">${{ prestamo.Valor_Prestamo_COP }}</div>
+										<div class="item-after" style="font-family: ubuntu; font-size: 16px; color: black; margin-top: 2px;">$ {{ prestamo.Valor_Prestamo_COP }}</div>
 									</div>
 								</li>
 								{% endif %}
@@ -160,7 +160,7 @@
 								<li>
 									<div class="item-title-row">
 										<div class="item-title" style="font-family: ubuntu; font-weight: bold; color: black; font-size: 22px;">Valor Pagar COP:</div>
-										<div class="item-after" style="font-family: ubuntu; font-size: 16px; color: black; margin-top: 2px;">${{ pago_prestamo.Valor_Pagar_COP }}</div>
+										<div class="item-after" style="font-family: ubuntu; font-size: 16px; color: black; margin-top: 2px;">$ {{ pago_prestamo.Valor_Pagar_COP }}</div>
 									</div>
 								</li>
 								{% endif %}
@@ -201,6 +201,6 @@
 		<script type="text/javascript" src="../../static/lib/framework7/js/framework7.min.js"></script>
 		<!-- Path to your app js-->
 		<script type="text/javascript" src="../../static/js/my-app.js"></script>
-		<script src='../../static/js/jquery.min.js'></script>
+
 	</body>
 </html>
